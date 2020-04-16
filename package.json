@@ -7,7 +7,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "test": "jest",
+    "build:dev": "webpack --display-error-details --config webpack.config.js --progress --color",
+    "build:prod": "webpack --env.prod --config webpack.config.js --progress --color"
   },
   "dependencies": {
     "rxjs": "^6.5.5",
