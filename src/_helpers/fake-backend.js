@@ -1,5 +1,6 @@
 export function configureFakeBackend() {
     let users = [{ id: 1, username: 'verizon', password: 'project', firstName: 'Verizon', lastName: 'P' }];
+    const customers = [{_id: '1', name: 'Sowmya', servicePlan: 'Phone with Data'}, {_id: '2', name: 'Srimai', servicePlan: 'TV Channels'}];
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
         return new Promise((resolve, reject) => {
@@ -35,11 +36,11 @@ export function configureFakeBackend() {
                 }
 
                 // get users
-                if (url.endsWith('/users') && opts.method === 'GET') {
+                if (url.endsWith('/customers') && opts.method === 'GET') {
                     // check for fake auth token in header and return users if valid, this security 
                     // is implemented server side in a real application
                     if (opts.headers && opts.headers.Authorization === `Basic ${window.btoa('verizon:project')}`) {
-                        resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(users)) });
+                        resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(customers)) });
                     } else {
                         // return 401 not authorised if token is null or invalid
                         reject('Unauthorised');

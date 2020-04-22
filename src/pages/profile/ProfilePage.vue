@@ -27,15 +27,15 @@
         <div v-show="submitted && !email" class="invalid-feedback">Email is required</div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="firstName">First Name</label>
         <input
-          type="password"
-          v-model="password"
-          name="password"
+          type="text"
+          v-model="firstName"
+          name="firstName"
           class="form-control"
-          :class="{ 'is-invalid': submitted && !password }"
+          :class="{ 'is-invalid': submitted && !firstName }"
         />
-        <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
+        <div v-show="submitted && !firstName" class="invalid-feedback">First Name is required</div>
       </div>
       <div class="form-group">
         <label for="age">Age</label>
@@ -86,35 +86,39 @@ export default {
   data() {
     return {
       username: "",
-      password: "",
+      firstName: "",
       email: "",
       age: "",
       gender: "",
       submitted: false,
       loading: false,
       returnUrl: "",
-      error: ""
+      error: "",
+      userDetails: {}
     };
   },
   created() {
-    const userDetails = JSON.parse(localStorage.getItem("user"));
-    this.username = userDetails.username;
+    this.userDetails = JSON.parse(localStorage.getItem("user"));
+    console.log('userdretails ', this.userDetails)
+    this.username = this.userDetails.username;
   },
   methods: {
     handleSubmit(e) {
       this.submitted = true;
-      const { username, password, age, email, gender } = this;
+      const { username, firstName, age, email } = this;
 
       // stop here if form is invalid
-      if (!(username && password && age && email & gender)) {
+      if (!(username && firstName && age && email)) {
         return;
       }
 
       this.loading = true;
-      const source = timer(2000);
-      const subscribe = source.subscribe(val => {
-        this.loading = true;
-      });
+      this.userDetails.email = email;
+      this.userDetails.age = age;
+      this.userDetails.firstName = firstName;
+      userService.updateUserDetails(this.userDetails).then(resp => {
+        this.loading = false;
+      })
     }
   }
 };

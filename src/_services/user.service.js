@@ -1,10 +1,12 @@
 import config from 'config';
 import { authHeader } from '../_helpers';
+import { timer } from 'rxjs';
 
 export const userService = {
     login,
     logout,
-    getAll
+    getAllCustomers,
+    updateUserDetails
 };
 
 function login(username, password) {
@@ -34,13 +36,23 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function getAll() {
+function getAllCustomers() {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
+    return fetch(`${config.apiUrl}/customers`, requestOptions).then(handleResponse);
+}
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+function updateUserDetails(userDetails) {
+    return new Promise(
+        function (resolve, reject) {
+            const source = timer(2000);
+            source.subscribe(val => {
+                localStorage.setItem('user', JSON.stringify(userDetails));
+                resolve(userDetails);
+            });
+        });
 }
 
 function handleResponse(response) {

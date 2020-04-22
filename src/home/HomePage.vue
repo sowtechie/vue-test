@@ -4,6 +4,9 @@
         <p>
             <router-link to="/updateProfile">Update Profile</router-link>
         </p>
+        <p>
+            <router-link to="/customersList">Customers List</router-link>
+        </p>
     </div>
 </template>
 
@@ -14,13 +17,10 @@ export default {
     data () {
         return {
             user: {},
-            users: []
         }
     },
     created () {
         this.user = JSON.parse(localStorage.getItem('user'));
-        this.users.loading = true;
-        userService.getAll().then(users => this.users = users);
     }
 };
 </script>
