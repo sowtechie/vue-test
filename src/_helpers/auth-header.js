@@ -7,6 +7,8 @@ export function authHeader() {
     if (user && user.authdata) {
         return { 
             'Authorization': 'Basic ' + user.authdata, 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:8085',
             "Verizon-Headers-Json": securityService.getSecuredHeaders(headersJson) };
     } else {
         return {};

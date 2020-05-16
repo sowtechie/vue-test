@@ -10,6 +10,7 @@ import AdminPage from '../pages/AdminPage'
 Vue.use(Router);
 
 export const router = new Router({
+  base: 'vue-admin-ui',
   mode: 'history',
   routes: [
     { path: '/', component: HomePage },

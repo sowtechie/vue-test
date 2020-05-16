@@ -3,9 +3,21 @@ import { authHeader } from '../_helpers';
 import { timer } from 'rxjs';
 
 export const adminService = {
+    setParser,
     getAllRules,
     getRule
 };
+
+function setParser(parser) {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify({
+            parser
+        })
+    };
+    return fetch(`${config.adminUrl}/rules/setParser`, requestOptions).then();
+}
 
 function getRule(ruleId) {
     const requestOptions = {
@@ -15,7 +27,7 @@ function getRule(ruleId) {
     return fetch(`${config.adminUrl}/rules/getRule?ruleId=` + ruleId, requestOptions).then(handleResponse);
 }
 
-function getAllRules() {
+function getAllRules(parser) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
