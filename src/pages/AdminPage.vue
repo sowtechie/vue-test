@@ -77,7 +77,7 @@ export default {
           console.log("respon is ", response);
           if (response && response.status == 200) {
             this.isError = false;
-            this.parserResponseStatus = "Parser is set successfully";
+            this.parserResponseStatus = "Parser settings saved successfully";
           } else {
             this.isError = true;
             this.parserResponseStatus = "Error while setting parser";
