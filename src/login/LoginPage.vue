@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="alert alert-info">Welcome to Sowmya Vue App. Please enter your credentials</div>
+    <div class="alert alert-info">Welcome to Admin App. Please enter your credentials</div>
     <h2>Login</h2>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
