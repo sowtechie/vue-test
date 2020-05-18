@@ -4,12 +4,12 @@
         <p>
             <router-link to="/admin">Go to admin page</router-link>
         </p>
-        <p>
+        <!-- <p>
             <router-link to="/updateProfile">Update Profile</router-link>
         </p>
         <p>
             <router-link to="/customersList">Customers List</router-link>
-        </p>
+        </p> -->
     </div>
 </template>
 

@@ -4,8 +4,6 @@ import { timer } from 'rxjs';
 
 export const adminService = {
     setParser,
-    getAllRules,
-    getRule
 };
 
 function setParser(parser) {
@@ -16,39 +14,13 @@ function setParser(parser) {
             parser
         })
     };
-    return fetch(`${config.adminUrl}/rules/setParser`, requestOptions).then();
-}
-
-function getRule(ruleId) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-    return fetch(`${config.adminUrl}/rules/getRule?ruleId=` + ruleId, requestOptions).then(handleResponse);
-}
-
-function getAllRules(parser) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-    return fetch(`${config.adminUrl}/rules/getRules`, requestOptions).then(handleResponse);
-}
-
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
-            }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
+    return fetch(`${config.adminUrl}/rules/setParser`, requestOptions).then(resp => {
+        console.log('response after setting parser', resp)
+        return Promise.resolve(resp)
+    }).catch(error => {
+        console.error('error while setting parser')
+        return Promise.reject()
+    }).finally(r => {
+        console.log('done with set parser')
     });
 }
