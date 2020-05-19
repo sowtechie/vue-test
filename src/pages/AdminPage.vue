@@ -10,10 +10,10 @@
           <div id="parser">
             <div>
               <div>
-                <input v-model="parserMode" type="radio" id="parserOn" name="parser" value="true" />
+                <input v-model="parserMode" type="radio" id="parserOn" name="parser" value=true />
                 <label for="parserOn">On</label>
                 <br />
-                <input v-model="parserMode" type="radio" id="parserOff" name="parser" value="false" />
+                <input v-model="parserMode" type="radio" id="parserOff" name="parser" value=false />
                 <label for="parserOff">Off</label>
                 <br />
               </div>
