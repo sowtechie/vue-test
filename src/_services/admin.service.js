@@ -11,7 +11,7 @@ function setParser(parser) {
         method: 'POST',
         headers: authHeader(),
         body: JSON.stringify({
-            parser
+            "parser": "" + parser + ""
         })
     };
     return fetch(`${config.adminUrl}/rules/setParser`, requestOptions).then(resp => {

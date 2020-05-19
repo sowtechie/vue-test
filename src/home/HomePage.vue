@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Hi {{user.firstName}}!</h1>
+        <!-- <h1>Hi {{user.firstName}}!</h1> -->
         <p>
             <router-link to="/admin">Go to admin page</router-link>
         </p>
@@ -19,11 +19,11 @@ import { userService } from '../_services';
 export default {
     data () {
         return {
-            user: {},
+            // user: {},
         }
     },
     created () {
-        this.user = JSON.parse(localStorage.getItem('user'));
+        // this.user = JSON.parse(localStorage.getItem('user'));
     }
 };
 </script>
