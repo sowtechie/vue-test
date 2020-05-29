@@ -4,6 +4,7 @@ import { timer } from 'rxjs';
 
 export const adminService = {
     setParser,
+    getUrlStatus,
 };
 
 function setParser(parser) {
@@ -22,5 +23,31 @@ function setParser(parser) {
         return Promise.reject()
     }).finally(r => {
         console.log('done with set parser')
+    });
+}
+
+function getUrlStatus(parser) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader(),
+    };
+    return fetch(`${config.adminUrl}/urls/getUrlStatus`, requestOptions).then(handleResponse);
+}
+
+function handleResponse(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            if (response.status === 401) {
+                // auto logout if 401 response returned from api
+                logout();
+                location.reload(true);
+            }
+
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
+
+        return data;
     });
 }

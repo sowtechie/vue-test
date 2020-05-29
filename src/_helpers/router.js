@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import HomePage from '../home/HomePage'
-import AdminPage from '../pages/AdminPage'
+import HomePage from '../home/HomePage';
+import AdminPage from '../pages/AdminPage';
+import HeadersStatus from '../pages/HeadersStatus';
+
 
 Vue.use(Router);
 
@@ -12,6 +14,7 @@ export const router = new Router({
   routes: [
     { path: '/', component: HomePage },
     { path: '/admin', component: AdminPage },
+    { path: '/headersStatus', component:HeadersStatus },
     // otherwise redirect to home
     { path: '*', redirect: '/' }
   ]

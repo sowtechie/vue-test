@@ -1,0 +1,56 @@
+[{
+    "Request url": "https://www.verizonwireless.com/?intcmp=vzwdom",
+
+    "request Headers": {
+
+                    "authority": "www.google.com",
+                    "method": "GET",
+                    "path": "/pagead/1p-user-list/1052677307/?random=1590765483106&cv=9&fst=1590764400000&num=1&bg=ffffff&guid=ON&u_h=570&u_w=377&u_ah=570&u_aw=377&u_cd=24&u_his=2&u_tz=-240&u_java=false&u_nplug=0&u_nmime=0&gtm=2oa5k1&sendb=1&data=event%3Dpage_view%3Bdimension1%3D%2Fmobile%20store%2Fprospect%2Fhome%20page&frm=0&url=https%3A%2F%2Fwww.verizonwireless.com%2F%3Fintcmp%3Dvzwdom&ref=https%3A%2F%2Fwww.verizonwireless.com%2F%3Fintcmp%3Dvzwdom&tiba=Verizon%20Wireless%2C%20Smartphone%20Deals%20%26%20Plans%20%7C%20First%20to%205G&async=1&fmt=3&is_vtc=1&random=3936167957&resp=GooglemKTybQhCsO&rmt_tld=0&ipr=y",
+                    "scheme": "https",
+                    "accept": "image/webp,image/apng,image/*,*/*;q=0.8",
+                    "accept-encoding": "gzip, deflate, br",
+                    "accept-language": "en-US,en;q=0.9",
+                    "cookie": "CONSENT=YES+US.en+20161218-19-0; __Secure-3PSIDCC=AJi4QfHXT7Zgtr1VBOOb6Z1-ZLcSF3jdd528PFbTfWggDymMgfgeFIr8K8ZG_5Nz_NjjgQ5i; SID=xAdK93a2z_yZDQhFyPEWFM7K8z7vNFWPk6azHu5pGsGC6DICO4y-SgPBKVG53R_a64tlHg.; __Secure-3PSID=xAdK93a2z_yZDQhFyPEWFM7K8z7vNFWPk6azHu5pGsGC6DICw2VZEbpxRDOz1RhA8r8jfg.; HSID=AugL9GTwy0aXTXfZB; SSID=AFupdAnv5Kbd6doE6; APISID=nsI3rekafk5eVHAr/A8k0YV_T_UoxwidbK; SAPISID=_Z86XiYRt0sO_L--/A4fjPyE0PPNFVpu5r; __Secure-HSID=AugL9GTwy0aXTXfZB; __Secure-SSID=AFupdAnv5Kbd6doE6; __Secure-APISID=nsI3rekafk5eVHAr/A8k0YV_T_UoxwidbK; __Secure-3PAPISID=_Z86XiYRt0sO_L--/A4fjPyE0PPNFVpu5r; OTZ=5463537_72_76_104100_72_446760; ANID=AHWqTUmhIdIzVsriAihKmHHbeMyx-QERGjhOWGF4MEvCZNiT0maAtk4F__LheAFe; NID=204=PMs39dyXT-D9g0m2SCkL6-de5H69MmIHcb_ZSG_SwXAHS1fYY5lcVv6kA2423dva8zthmoAPDsrKuSXmad5NBWAF9KqW7OtE8lZ5jQrGSmNKCKwPsuSos11Q5H31ji7sN2HTHjqZ-zKlxM3phohjvgFae-C3IHlMJNNDFV-JmmsWjXWeugMSwWt2oeqXBfIS_h0kxB_ibZl8dZTL5gy1D028dPHuVU3L4YKIj3LKv-cMwjoFSXhz8KKxaC9bNcHpSlx8ZM26OhhDCKZAl0er4FTh_PAhYvXe0tDVa1QIG_McIHaD9060xtxJeJHHeHzk4DWhEZs; 1P_JAR=2020-05-29-15; SIDCC=AJi4QfHLKN5hLSSlUv1phi5woAZd0bM_yyYW2TlLmXkbukvnmU26pNi1YY5P0-EoN1xlBsgcu-Jg",
+                    "referer": "https://www.verizonwireless.com/?intcmp=vzwdom",
+                    "sec-fetch-dest": "image",
+                    "sec-fetch-mode": "no-cors",
+                    "sec-fetch-site": "cross-site",
+                    "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Mobile Safari/537.36",
+                    "x-client-data": "CI+2yQEIpbbJAQjBtskBCImSygEIqZ3KAQjvq8oBGL66ygEYm77KARi+vsoB",
+                    "x-omnibox-on-device-suggestions": "Control"
+
+    },
+    "Form Data": {
+                    "origin": "https://www.verizonwireless.com"
+    }
+},
+
+{
+    "Request url": "https://www.verizon.com",
+
+    "request Headers": {
+
+                    "authority": "www.google.com",
+                    "method": "GET",
+                    "path": "/pagead/1p-user-list/1052677307/?random=1590765483106&cv=9&fst=1590764400000&num=1&bg=ffffff&guid=ON&u_h=570&u_w=377&u_ah=570&u_aw=377&u_cd=24&u_his=2&u_tz=-240&u_java=false&u_nplug=0&u_nmime=0&gtm=2oa5k1&sendb=1&data=event%3Dpage_view%3Bdimension1%3D%2Fmobile%20store%2Fprospect%2Fhome%20page&frm=0&url=https%3A%2F%2Fwww.verizonwireless.com%2F%3Fintcmp%3Dvzwdom&ref=https%3A%2F%2Fwww.verizonwireless.com%2F%3Fintcmp%3Dvzwdom&tiba=Verizon%20Wireless%2C%20Smartphone%20Deals%20%26%20Plans%20%7C%20First%20to%205G&async=1&fmt=3&is_vtc=1&random=3936167957&resp=GooglemKTybQhCsO&rmt_tld=0&ipr=y",
+                    "scheme": "https",
+                    "accept": "image/webp,image/apng,image/*,*/*;q=0.8",
+                    "accept-encoding": "gzip, deflate, br",
+                    "accept-language": "en-US,en;q=0.9",
+                    "cookie": "CONSENT=YES+US.en+20161218-19-0; __Secure-3PSIDCC=AJi4QfHXT7Zgtr1VBOOb6Z1-ZLcSF3jdd528PFbTfWggDymMgfgeFIr8K8ZG_5Nz_NjjgQ5i; SID=xAdK93a2z_yZDQhFyPEWFM7K8z7vNFWPk6azHu5pGsGC6DICO4y-SgPBKVG53R_a64tlHg.; __Secure-3PSID=xAdK93a2z_yZDQhFyPEWFM7K8z7vNFWPk6azHu5pGsGC6DICw2VZEbpxRDOz1RhA8r8jfg.; HSID=AugL9GTwy0aXTXfZB; SSID=AFupdAnv5Kbd6doE6; APISID=nsI3rekafk5eVHAr/A8k0YV_T_UoxwidbK; SAPISID=_Z86XiYRt0sO_L--/A4fjPyE0PPNFVpu5r; __Secure-HSID=AugL9GTwy0aXTXfZB; __Secure-SSID=AFupdAnv5Kbd6doE6; __Secure-APISID=nsI3rekafk5eVHAr/A8k0YV_T_UoxwidbK; __Secure-3PAPISID=_Z86XiYRt0sO_L--/A4fjPyE0PPNFVpu5r; OTZ=5463537_72_76_104100_72_446760; ANID=AHWqTUmhIdIzVsriAihKmHHbeMyx-QERGjhOWGF4MEvCZNiT0maAtk4F__LheAFe; NID=204=PMs39dyXT-D9g0m2SCkL6-de5H69MmIHcb_ZSG_SwXAHS1fYY5lcVv6kA2423dva8zthmoAPDsrKuSXmad5NBWAF9KqW7OtE8lZ5jQrGSmNKCKwPsuSos11Q5H31ji7sN2HTHjqZ-zKlxM3phohjvgFae-C3IHlMJNNDFV-JmmsWjXWeugMSwWt2oeqXBfIS_h0kxB_ibZl8dZTL5gy1D028dPHuVU3L4YKIj3LKv-cMwjoFSXhz8KKxaC9bNcHpSlx8ZM26OhhDCKZAl0er4FTh_PAhYvXe0tDVa1QIG_McIHaD9060xtxJeJHHeHzk4DWhEZs; 1P_JAR=2020-05-29-15; SIDCC=AJi4QfHLKN5hLSSlUv1phi5woAZd0bM_yyYW2TlLmXkbukvnmU26pNi1YY5P0-EoN1xlBsgcu-Jg",
+                    "referer": "https://www.verizonwireless.com/?intcmp=vzwdom",
+                    "sec-fetch-dest": "image",
+                    "sec-fetch-mode": "no-cors",
+                    "sec-fetch-site": "cross-site",
+                    "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Mobile Safari/537.36",
+                    "x-client-data": "CI+2yQEIpbbJAQjBtskBCImSygEIqZ3KAQjvq8oBGL66ygEYm77KARi+vsoB",
+                    "x-omnibox-on-device-suggestions": "Control"
+
+    },
+    "Form Data": {
+                    "origin": "https://www.verizonwireless.com"
+    }
+}
+]
+
+
