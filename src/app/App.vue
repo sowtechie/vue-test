@@ -2,7 +2,7 @@
     <div class="jumbotron">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 offset-sm-3">
+                <div class="col-sm-10">
                     <router-view></router-view>
                 </div>
             </div>
