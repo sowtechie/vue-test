@@ -5,7 +5,7 @@
             <router-link to="/admin">Go to admin page</router-link>
         </p>
         <p>
-            <router-link to="/headersStatus">HeadersStatus</router-link>
+            <router-link to="/samples">New Requests Observed</router-link>
         </p>
         <!-- <p>
             <router-link to="/customersList">Customers List</router-link>

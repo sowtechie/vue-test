@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="alert alert-info">Http Request Page </div>
+    <div class="alert alert-info">Http Request Samples</div>
     <div class="accordion" id="accordionExample">
       <div class="card" v-for="(headersStatusObject, parentIndex) in urlheaderStatuses">
         <div class="card-header" id="headingOne">
@@ -28,7 +28,7 @@
                       :data-target="'#collapseOneHeaders' + parentIndex"
                       aria-expanded="true"
                       aria-controls="collapseOneHeaders"
-                    >Headers</button>
+                    >Request Headers</button>
                   </h2>
                 </div>
                 <div
@@ -45,7 +45,7 @@
                 </div>
               </div>
             </div>
-			            <div class="accordion" :id="'accordionBody' + parentIndex">
+            <div class="accordion" :id="'accordionBody' + parentIndex">
               <div class="card">
                 <div class="card-header">
                   <h2 class="mb-0">
@@ -54,7 +54,7 @@
                       type="button"
                       data-toggle="collapse"
                       :data-target="'#formData' + parentIndex"
-                    >Form Data</button>
+                    >Request Content</button>
                   </h2>
                 </div>
                 <div
@@ -64,9 +64,7 @@
                   :data-parent="'#collapseOneHeaders' + parentIndex"
                 >
                   <div class="card-body">
-                    <div>
-						{{urlheaderStatuses[parentIndex].xmlPayload}}
-					</div>
+                    <div>{{urlheaderStatuses[parentIndex].payLoad}}</div>
                   </div>
                 </div>
               </div>
@@ -86,20 +84,19 @@ import Vue from "vue";
 export default {
   data: function() {
     return {
-      urlheaderStatuses: []
+      urlheaderStatuses: headersStatusJson
     };
   },
   created() {
-    headerStatusService
-      .getAllParameters()
-      .then(response => {
-        this.isError = false;
-        this.urlheaderStatuses = response;
-      })
-      .catch(err => {
-        this.isError = true;
-        this.parserResponseStatus = "Error while fetching header parameters";
-      });
+	  this.urlheaderStatuses.forEach(sample => {
+		if (sample.xmlPayload) {
+			sample['payLoad'] = sample.xmlPayload;
+		} else if (sample.jsonPayload) {
+			sample['payLoad'] = sample.jsonPayload;
+		} else if (sample.formData) {
+			sample['payLoad'] = sample.formData;
+		}
+	  });
   },
   methods: {}
 };
