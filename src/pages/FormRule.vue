@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="alert alert-info">Http Request Samples</div>
+    <div class="alert alert-info">Http Request Page </div>
     <div class="accordion" id="accordionExample">
       <div class="card" v-for="(headersStatusObject, parentIndex) in urlheaderStatuses">
         <div class="card-header" id="headingOne">
@@ -28,7 +28,7 @@
                       :data-target="'#collapseOneHeaders' + parentIndex"
                       aria-expanded="true"
                       aria-controls="collapseOneHeaders"
-                    >Request Headers</button>
+                    >Headers</button>
                   </h2>
                 </div>
                 <div
@@ -40,12 +40,13 @@
                   <div class="card-body">
                     <div
                       v-for="header in Object.entries(urlheaderStatuses[parentIndex].requestHeaders)"
-                    >{{header[0]}} : {{header[1]}}</div>
+                    ><input type="checkbox" name="cName"> <b>{{header[0]}} </b> : {{header[1]}} </div>
                   </div>
+                  <div><input type="submit" name="CreateRule" value="Create Rule"></div>
                 </div>
               </div>
             </div>
-            <div class="accordion" :id="'accordionBody' + parentIndex">
+			            <div class="accordion" :id="'accordionBody' + parentIndex">
               <div class="card">
                 <div class="card-header">
                   <h2 class="mb-0">
@@ -54,7 +55,7 @@
                       type="button"
                       data-toggle="collapse"
                       :data-target="'#formData' + parentIndex"
-                    >Request Content</button>
+                    >Form Data</button>
                   </h2>
                 </div>
                 <div
@@ -64,7 +65,9 @@
                   :data-parent="'#collapseOneHeaders' + parentIndex"
                 >
                   <div class="card-body">
-                    <div>{{urlheaderStatuses[parentIndex].payLoad}}</div>
+                    <div>
+						{{urlheaderStatuses[parentIndex].formData.payLoad}}
+					</div>
                   </div>
                 </div>
               </div>
@@ -78,28 +81,26 @@
 
 <script>
 import headersStatusJson from "./../assets/headersStatus.json";
-import { headerStatusService } from "../_services";
+// import { adminService } from "../_services";
 import Vue from "vue";
 
 export default {
   data: function() {
     return {
-      urlheaderStatuses: []
+      urlheaderStatuses: headersStatusJson
     };
   },
   created() {
-    headerStatusService.getAllParameters().then(response => {
-	this.urlheaderStatuses = response;
-      this.urlheaderStatuses.forEach(sample => {
-        if (sample.xmlPayload) {
-          sample["payLoad"] = sample.xmlPayload;
-        } else if (sample.jsonPayload) {
-          sample["payLoad"] = sample.jsonPayload;
-        } else if (sample.formData) {
-          sample["payLoad"] = sample.formData;
-        }
+    adminService
+      .getUrlStatus(this.parserMode)
+      .then(response => {
+        this.isError = false;
+        this.urlheaderStatuses = response;
+      })
+      .catch(err => {
+        this.isError = true;
+        this.parserResponseStatus = "Error while setting Parser";
       });
-    });
   },
   methods: {}
 };

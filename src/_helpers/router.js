@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
+import FormRule from '../pages/FormRule';
 import HomePage from '../home/HomePage';
 import AdminPage from '../pages/AdminPage';
 import HeadersStatus from '../pages/HeadersStatus';
@@ -15,6 +15,7 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/admin', component: AdminPage },
     { path: '/samples', component:HeadersStatus },
+    { path: '/formRule', component:FormRule },
     // otherwise redirect to home
     { path: '*', redirect: '/' }
   ]

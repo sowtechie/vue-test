@@ -1,14 +1,13 @@
 <template>
     <div>
-        <!-- <h1>Hi {{user.firstName}}!</h1> -->
         <p>
             <router-link to="/admin">Go to admin page</router-link>
         </p>
         <p>
             <router-link to="/samples">New Requests Observed</router-link>
         </p>
-        <!-- <p>
-            <router-link to="/customersList">Customers List</router-link>
+         <!-- <p>
+            <router-link to="/formRule">Form Rule</router-link>
         </p> -->
     </div>
 </template>
