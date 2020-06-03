@@ -31,8 +31,8 @@ module.exports = {
         // global app config object
         config: JSON.stringify({
             apiUrl: 'http://localhost:4000',
-            adminUrl: 'http://localhost:8081',
-            headerStatusUrl: 'http://localhost:8081',
+            adminUrl: 'http://localhost:8080',
+            headerStatusUrl: 'http://localhost:8080',
         })
     }
 }
