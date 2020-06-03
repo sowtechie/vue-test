@@ -65,7 +65,7 @@
                 >
                   <div class="card-body">
                     <div>
-						{{urlheaderStatuses[parentIndex].formData.origin}}
+						{{urlheaderStatuses[parentIndex].xmlPayload}}
 					</div>
                   </div>
                 </div>
@@ -80,25 +80,25 @@
 
 <script>
 import headersStatusJson from "./../assets/headersStatus.json";
-// import { adminService } from "../_services";
+import { headerStatusService } from "../_services";
 import Vue from "vue";
 
 export default {
   data: function() {
     return {
-      urlheaderStatuses: headersStatusJson
+      urlheaderStatuses: []
     };
   },
   created() {
-    adminService
-      .getUrlStatus(this.parserMode)
+    headerStatusService
+      .getAllParameters()
       .then(response => {
         this.isError = false;
         this.urlheaderStatuses = response;
       })
       .catch(err => {
         this.isError = true;
-        this.parserResponseStatus = "Error while setting Parser";
+        this.parserResponseStatus = "Error while fetching header parameters";
       });
   },
   methods: {}
