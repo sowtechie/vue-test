@@ -64,7 +64,7 @@
                   :data-parent="'#collapseOneHeaders' + parentIndex"
                 >
                   <div class="card-body">
-                    <div>{{urlheaderStatuses[parentIndex].payLoad}}</div>
+                    <div>{{urlheaderStatuses[parentIndex].payload}}</div>
                   </div>
                 </div>
               </div>
@@ -89,16 +89,16 @@ export default {
   },
   created() {
     headerStatusService.getAllParameters().then(response => {
-	this.urlheaderStatuses = response;
-      this.urlheaderStatuses.forEach(sample => {
-        if (sample.xmlPayload) {
-          sample["payLoad"] = sample.xmlPayload;
-        } else if (sample.jsonPayload) {
-          sample["payLoad"] = sample.jsonPayload;
-        } else if (sample.formData) {
-          sample["payLoad"] = sample.formData;
-        }
-      });
+	this.urlheaderStatuses = response.content || [];
+    //   this.urlheaderStatuses.forEach(sample => {
+    //     if (sample.xmlPayload) {
+    //       sample["payLoad"] = sample.xmlPayload;
+    //     } else if (sample.jsonPayload) {
+    //       sample["payLoad"] = sample.jsonPayload;
+    //     } else if (sample.formData) {
+    //       sample["payLoad"] = sample.formData;
+    //     }
+    //   });
     });
   },
   methods: {}
