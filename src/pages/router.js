@@ -15,7 +15,7 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/admin', component: AdminPage },
     { path: '/samples', component:HeadersStatus },
-    // { path: '/selectedHeaders', component:SelectedHeaders },
+    { path: '/selectedHeaders', component:SelectedHeaders },
     // { path: '/formRule', component:FormRule },
     // // otherwise redirect to home
     { path: '*', redirect: '/' }
