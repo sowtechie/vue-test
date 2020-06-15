@@ -15,6 +15,7 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/admin', component: AdminPage },
     { path: '/samples', component:HeadersStatus },
+    //ElasticRule comes here
     { path: '/selectedHeaders', component:SelectedHeaders },
     // { path: '/formRule', component:FormRule },
     // // otherwise redirect to home
