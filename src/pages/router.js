@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import AdminPage from '../pages/AdminPage';
 import HomePage from '../pages/HomePage';
 import HeadersStatus from '../pages/HeadersStatus';
-import SamplePage from '../pages/SamplePage';
+import SelectedHeaders from '../pages/SelectedHeaders';
 
 
 Vue.use(Router);
@@ -15,13 +15,13 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/admin', component: AdminPage },
     { path: '/samples', component:HeadersStatus },
-    // { path: '/selectedHeaders', component:SelectedHeaders },
-   {path: '/sample', component:SamplePage},
+    //ElasticRule comes here
+    { path: '/selectedHeaders', component:SelectedHeaders },
+    // { path: '/formRule', component:FormRule },
     // // otherwise redirect to home
     { path: '*', redirect: '/' }
   ]
 });
-//sv add roue comments
 
 // router.beforeEach((to, from, next) => {
 //   // redirect to login page if not logged in and trying to access a restricted page
