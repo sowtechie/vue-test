@@ -21,6 +21,7 @@ export const router = new Router({
     { path: '*', redirect: '/' }
   ]
 });
+//sv add roue comments
 
 // router.beforeEach((to, from, next) => {
 //   // redirect to login page if not logged in and trying to access a restricted page
