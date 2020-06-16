@@ -61,9 +61,14 @@
 </template>
 
 <script>
+import axios from "axios";
+import config from "config";
 export default {
   data() {
     return {
+      //api
+      svcol: null,
+      //api..
       svpointer: null,
       total: 0,
       next: null,
@@ -611,10 +616,55 @@ export default {
       show: true
     };
   },
+  created: function() {
+    let serverURL = `${config.headerStatusUrl}/getAllParameters`;
+    // let serverURL = 'http://localhost:8080/svstatus'
+    console.log("serverURL :" + serverURL);
+    axios
+      .get(serverURL)
+      .then(response => {
+        if (!(response && response.data && response.data.content)) {
+          console.log(
+            "Service error - Please contact Backend admin for Services error or Retry later"
+          );
+          return;
+        }
+        if (response.data.content.length < 1) {
+          console.log(
+            "Services has empty data content is empty array expected list of sampling urls"
+          );
+        }
+        this.svcol = response.data.content;
+        console.log("sv ---got server data");
+        console.log(response);
+
+        this.svcol.map((o, i) => {
+          o["generalHeaders"] = o["requestHeaders"];
+          o["rule_uri"] = o["requestUrl"];
+          o["is_selected"] = false;
+          o["created_last"] = "08/1 10:00 AM";
+          if (!o["responseHeaders"]) {
+            o["responseHeaders"] = { ...o["requestHeaders"] };
+          }
+          if (
+            o["responseHeaders"] &&
+            Object.keys(o["responseHeaders"]).length < 1
+          ) {
+            o["responseHeaders"] = { ...o["requestHeaders"] };
+          }
+        });
+
+        console.log("svmod data-----");
+        console.log(this.svcol);
+        this.items = this.svcol;
+        console.log("svmod data ,,,");
+      })
+      .catch(error => console.log(error));
+  },
   methods: {
     onRowSelected(items) {
       this.selected = items;
-      
+
       let param = {
         rule: this.selected[0].rule_uri,
         created_last: this.selected[0].created_last,
@@ -624,7 +674,6 @@ export default {
       this.svpointer = param;
       this.$emit("svrefresh", param);
     }
-   
   },
   computed: {
     filteredOrigins() {
