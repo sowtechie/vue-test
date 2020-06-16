@@ -84,83 +84,105 @@
                 class="btn btn-primary"
                 data-toggle="modal"
                 data-target="#exampleModal"
-                v-on:click
-                ="extractSelectedHeaders(parentIndex)"
+                v-on:click="extractSelectedHeaders(parentIndex)"
               >
                 <!-- <router-link to="/selectedHeaders" style="color: white">Extract</router-link> -->
                 Extract
               </button>
-
-              <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-                
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                  
-                    <div class="modal-header">
-                      <div> 
-                        <div class= "header-container">
-                      <div style="padding-right:10px"><a href="#section2">Name Assets</a></div>
-                      <div><a href="#section2">Set Rules</a></div>
-                 </div>
-                      <h6 class="modal-title" id="exampleModalLabel">{{selectedSample.requestUrl}}</h6>
-                    </div>
-                     </div>
-                    <div class="modal-body">
-                      <div class="section-header">General</div>
-                      <div class="section-content">
-                        <div class="input-group url-title mb-3">
-                          <div class="content-label">
-                            <label for="male">Url Title:</label>
-                          </div>
-                          <div style="padding-top:5px; align-items:center">
-                            <input style ="align-items:center"
-                              type="text"
-                              class="form-control"
-                              placeholder="Friendly Url"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            />
-                          </div>
-                        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div>
+                <div class="header-container">
+                  <div v-on:click="showSetRules=false" style="padding-right:10px">
+                    <a href="#section2">Name Assets</a>
+                  </div>
+                  <div v-on:click="showSetRules=true">
+                    <a href="#section2">Set Rules</a>
+                  </div>
+                </div>
+                <h6 class="modal-title" id="exampleModalLabel">{{selectedSample.requestUrl}}</h6>
+              </div>
+            </div>
+            <div v-if="!showSetRules" class="modal-body">
+              <div class="section-header">General</div>
+              <div class="section-content">
+                <div class="input-group url-title mb-3">
+                  <div class="content-label">
+                    <label for="male">Url Title:</label>
+                  </div>
+                  <div style="padding-top:5px; align-items:center">
+                    <input
+                      style="align-items:center"
+                      type="text"
+                      class="form-control"
+                      placeholder="Friendly Url"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="section-header">Request Headers</div>
+                <div class="section-content">
+                  <div v-for="(header, headerIndex) in getSelectedSampleHeaders()">
+                    <div class="input-group url-title mb-3">
+                      <div class="content-label">
+                        <label for="headerIndex">{{header.headerKey}}:</label>
                       </div>
-                      <div>
-                        <div class="section-header">Request Headers</div>
-                        <div class="section-content">
-                          <div v-for="(header, headerIndex) in getSelectedSampleHeaders()">
-                            <div class="input-group url-title mb-3">
-                              <div class="content-label">
-                                <label :for="parentIndex + ':' + headerIndex">{{header.headerKey}}:</label>
-                              </div>
-                              <div style="padding-top:5px; align-items:center">
-                                <input
-                                  v-model="header.headerValue"
-                                  :id="parentIndex + ':' + headerIndex"
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Username"
-                                  aria-label="Username"
-                                  aria-describedby="basic-addon1"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div style="padding-top:5px; align-items:center">
+                        <input
+                          v-model="header.headerValue"
+                          id="headerIndex"
+                          type="text"
+                          class="form-control"
+                          placeholder="Username"
+                          aria-label="Username"
+                          aria-describedby="basic-addon1"
+                        />
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary">Next</button>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+            <div v-if="showSetRules" class="modal-body">
+              <h6>IF</h6>
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >Is</button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Is not</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+                <button type="button" class="btn btn-secondary">Admin</button>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary">Next</button>
             </div>
           </div>
         </div>
@@ -184,7 +206,8 @@ export default {
     return {
       urlheaderStatuses: headersStatusJson.content,
       selectedSampleIndex: 0,
-      selectedSample: {title: "https://verizonwireless.com/order/status"}
+      selectedSample: { title: "https://verizonwireless.com/order/status" },
+      showSetRules: false
     };
   },
   created() {
@@ -196,23 +219,32 @@ export default {
     extractSelectedHeaders(index) {
       this.selectedSampleIndex = index;
       this.selectedSample = this.urlheaderStatuses[this.selectedSampleIndex];
+      this.selectedSample.requestHeaders.forEach(rh => {
+        rh.value = "";
+      });
       localStorage.setItem("samples", JSON.stringify(this.urlheaderStatuses));
-      console.log("submitSelectedHeaders" , index);
+      console.log("submitSelectedHeaders", index);
     },
     submitSelectedHeaders() {
       localStorage.setItem("samples", JSON.stringify(this.urlheaderStatuses));
       console.log("submitSelectedHeaders");
     },
     getSelectedSampleHeaders() {
-      const ha = JSON.parse(localStorage.getItem("samples"))[this.selectedSampleIndex].requestHeaders.filter(s => s.selected);
+      console.log("this.selectedSampleIndex", this.selectedSampleIndex);
+      const ha = JSON.parse(localStorage.getItem("samples"))[
+        this.selectedSampleIndex
+      ].requestHeaders.filter(s => s.selected);
       console.log(JSON.stringify(ha));
-      const m = ha.map(h=>{return {
-        headerKey: h.key,
-        headerValue: h.value
-      }});
-      console.log('get sel', JSON.stringify(m))
+      const m = ha.map(h => {
+        console.log("h", h.key, "v:", h.value);
+        return {
+          headerKey: h.key,
+          headerValue: h.value
+        };
+      });
+      console.log("get selectedHeaders => ", JSON.stringify(m));
       return m;
-    }
+    },
   }
 };
 </script>
@@ -241,12 +273,18 @@ export default {
 }
 
 .content-label {
-    width: 112px;
+  width: 112px;
 }
-.header-container{
-  display:flex;
-  flex-direction: row; 
-  padding-bottom:10px;
-  
+.header-container {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+.dropdown {
+  display: flex;
+  flex-direction: row;
+}
+.btn btn-secondary dropdown-toggle {
+  padding-right: 5px;
 }
 </style>

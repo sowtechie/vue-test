@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import AdminPage from '../pages/AdminPage';
 import HomePage from '../pages/HomePage';
 import HeadersStatus from '../pages/HeadersStatus';
-import SelectedHeaders from '../pages/SelectedHeaders';
+import SamplePage from '../pages/SamplePage';
 
 
 Vue.use(Router);
@@ -16,7 +16,7 @@ export const router = new Router({
     { path: '/admin', component: AdminPage },
     { path: '/samples', component:HeadersStatus },
     // { path: '/selectedHeaders', component:SelectedHeaders },
-    // { path: '/formRule', component:FormRule },
+   {path: '/sample', component:SamplePage},
     // // otherwise redirect to home
     { path: '*', redirect: '/' }
   ]
