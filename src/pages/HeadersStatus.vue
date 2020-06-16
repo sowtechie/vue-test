@@ -39,17 +39,8 @@
                 >
                   <div class="card-body">
                     <div
-                      v-for="(header, headerIndex) in urlheaderStatuses[parentIndex].requestHeaders"
-                    >
-                      <input
-                        type="checkbox"
-                        name="cName"
-                        v-model="header.selected"
-                        v-on:change="submitSelectedHeaders()"
-                      />
-                      <b>{{header.key}}</b>
-                      : {{header.value}}
-                    </div>
+                      v-for="header in Object.entries(urlheaderStatuses[parentIndex].requestHeaders)"
+                    >{{header[0]}} : {{header[1]}}</div>
                   </div>
                 </div>
               </div>
@@ -78,97 +69,8 @@
                 </div>
               </div>
             </div>
-            <div style="margin-top: 8px; margin-bottom: 8px; float: right">
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-toggle="modal"
-                data-target="#exampleModal"
-                v-on:click
-                ="extractSelectedHeaders(parentIndex)"
-              >
-                <!-- <router-link to="/selectedHeaders" style="color: white">Extract</router-link> -->
-                Extract
-              </button>
-
-              <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-                
-              >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                  
-                    <div class="modal-header">
-                      <div> 
-                        <div class= "header-container">
-                      <div style="padding-right:10px"><a href="#section2">Name Assets</a></div>
-                      <div><a href="#section2">Set Rules</a></div>
-                 </div>
-                      <h6 class="modal-title" id="exampleModalLabel">{{selectedSample.requestUrl}}</h6>
-                    </div>
-                     </div>
-                    <div class="modal-body">
-                      <div class="section-header">General</div>
-                      <div class="section-content">
-                        <div class="input-group url-title mb-3">
-                          <div class="content-label">
-                            <label for="male">Url Title:</label>
-                          </div>
-                          <div style="padding-top:5px; align-items:center">
-                            <input style ="align-items:center"
-                              type="text"
-                              class="form-control"
-                              placeholder="Friendly Url"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="section-header">Request Headers</div>
-                        <div class="section-content">
-                          <div v-for="(header, headerIndex) in getSelectedSampleHeaders()">
-                            <div class="input-group url-title mb-3">
-                              <div class="content-label">
-                                <label :for="parentIndex + ':' + headerIndex">{{header.headerKey}}:</label>
-                              </div>
-                              <div style="padding-top:5px; align-items:center">
-                                <input
-                                  v-model="header.headerValue"
-                                  :id="parentIndex + ':' + headerIndex"
-                                  type="text"
-                                  class="form-control"
-                                  placeholder="Username"
-                                  aria-label="Username"
-                                  aria-describedby="basic-addon1"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                      <button type="button" class="btn btn-primary">Next</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
-      <div style="margin-top: 8px; margin-bottom: 8px; float: right">
-        <!-- <button type="button" class="btn btn-primary" @click="submitSelectedHeaders()"> -->
-        <!-- <router-link to="/selectedHeaders" style="color: white">Submit</router-link> -->
-        <!-- </button> -->
       </div>
     </div>
   </div>
@@ -176,77 +78,178 @@
 
 <script>
 import headersStatusJson from "./../assets/headersStatus.json";
-import { headerStatusService } from "../_services";
+
+import { headerStatusService, adminService } from "../_services";
 import Vue from "vue";
 
 export default {
   data: function() {
     return {
-      urlheaderStatuses: headersStatusJson.content,
-      selectedSampleIndex: 0,
-      selectedSample: {title: "https://verizonwireless.com/order/status"}
+      //urlheaderStatuses: []
+      urlheaderStatuses:[
+        {
+            "requestUrl": "/xmlUri/",
+            "requestHeaders": {
+                "accept": "*/*",
+                "user-agent": "PostmanRuntime/7.25.0",
+                "host": "localhost:9005",
+                "timeout-access": "<function1>",
+                "postman-token": "f4e78cef-4362-4511-9007-9f775c2a1a05",
+                "cookie": "ECOMM_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCIsIlJFRkVSRVJfVVJMIjoiL3Byb3NwZWN0L3RlYWxlYWZUYXJnZXQiLCJjc3BOb25jZSI6IjNhNzc4NTg1MzM2ZDViYzJlOTc3MWY3MDcxYmRkMWI0ZjMzNThlN2I4MWUzMzk0MWUwYTJiMjg4ODE1ZjU1MzQiLCJwbGF5U2Vzc2lvbiI6IlBPVC1ELWIwN2Q1MzBiLTU5NDEtNDVmNy04YjhmLWI5YjdhMWMxYzQ5YXtzNH0iLCJDb3JyZWxhdGlvbklkIjoiT05FRElHSVRBTC0xMDZhYjkxNy1mNGFjLTQyODEtODM5ZS1kMTVjYzA5OTQyNmQtVC0xNTg4NjQ4OTYxNjEwIn0sIm5iZiI6MTU4ODY0ODk2MSwiaWF0IjoxNTg4NjQ4OTYxfQ.jJhfEty9jzNrVtZXMU5yc2JKNQA_Y2Yei1a9QK-UoC4; billingId=Sanjeev; GlobalSessionID2=sfasdfasdf65765676fsadfas7f678sdf",
+                "x-origin-path": "/xmlUri/",
+                "connection": "keep-alive",
+                "accept-encoding": "gzip, deflate, br",
+                "x-forwarded-for": "10.20.216.49"
+            },
+            "xmlPayload": "<Customers>\n\t<Customer>\n\t\t<Number>1</Number>\n\t\t<FirstName>Fred</FirstName>\n\t\t<LastName>Landis</LastName>\n\t\t<Address>\n\t\t\t<Street>Oakstreet</Street>\n\t\t\t<City>Boston</City>\n\t\t\t<ZIP>23320</ZIP>\n\t\t\t<State>MA</State>\n\t\t</Address>\n\t</Customer>\n\t<Customer>\n\t\t<Number>2</Number>\n\t\t<FirstName>Michelle</FirstName>\n\t\t<LastName>Butler</LastName>\n\t\t<Address>\n\t\t\t<Street>First Avenue</Street>\n\t\t\t<City>San-Francisco</City>\n\t\t\t<ZIP>44324</ZIP>\n\t\t\t<State>CA</State>\n\t\t</Address>\n\t</Customer>\n\t<Customer>\n\t\t<Number>3</Number>\n\t\t<FirstName>Ted</FirstName>\n\t\t<LastName>Little</LastName>\n\t\t<Address>\n\t\t\t<Street>Long Way</Street>\n\t\t\t<City>Los-Angeles</City>\n\t\t\t<ZIP>34424</ZIP>\n\t\t\t<State>CA</State>\n\t\t</Address>\n\t</Customer>\n</Customers>",
+            "payLoad": ""
+        },
+        {
+            "requestUrl": "/formUri1/",
+            "requestHeaders": {
+                "accept": "*/*",
+                "user-agent": "PostmanRuntime/7.25.0",
+                "host": "localhost:9005",
+                "timeout-access": "<function1>",
+                "cookie": "ECOMM_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCIsIlJFRkVSRVJfVVJMIjoiL3Byb3NwZWN0L3RlYWxlYWZUYXJnZXQiLCJjc3BOb25jZSI6IjNhNzc4NTg1MzM2ZDViYzJlOTc3MWY3MDcxYmRkMWI0ZjMzNThlN2I4MWUzMzk0MWUwYTJiMjg4ODE1ZjU1MzQiLCJwbGF5U2Vzc2lvbiI6IlBPVC1ELWIwN2Q1MzBiLTU5NDEtNDVmNy04YjhmLWI5YjdhMWMxYzQ5YXtzNH0iLCJDb3JyZWxhdGlvbklkIjoiT05FRElHSVRBTC0xMDZhYjkxNy1mNGFjLTQyODEtODM5ZS1kMTVjYzA5OTQyNmQtVC0xNTg4NjQ4OTYxNjEwIn0sIm5iZiI6MTU4ODY0ODk2MSwiaWF0IjoxNTg4NjQ4OTYxfQ.jJhfEty9jzNrVtZXMU5yc2JKNQA_Y2Yei1a9QK-UoC4; billingId=Sanjeev; GlobalSessionID2=sfasdfasdf65765676fsadfas7f678sdf",
+                "postman-token": "8c8acaa6-5a71-4836-982e-4342384dc260",
+                "x-origin-path": "/formUri1/",
+                "connection": "keep-alive",
+                "accept-encoding": "gzip, deflate, br",
+                "x-forwarded-for": "10.20.216.49"
+            },
+            "formData": {
+                "formfield1": "value1",
+                "formfield2": "value2",
+                "formfield3": "value3"
+            },
+            "payLoad": ""
+        },
+        {
+            "requestUrl": "https://www.verizon.com/jsonUri1/",
+            "requestHeaders": {
+                "accept": "*/*",
+                "user-agent": "PostmanRuntime/7.25.0",
+                "host": "localhost:9005",
+                "timeout-access": "<function1>",
+                "cookie": "ECOMM_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCIsIlJFRkVSRVJfVVJMIjoiL3Byb3NwZWN0L3RlYWxlYWZUYXJnZXQiLCJjc3BOb25jZSI6IjNhNzc4NTg1MzM2ZDViYzJlOTc3MWY3MDcxYmRkMWI0ZjMzNThlN2I4MWUzMzk0MWUwYTJiMjg4ODE1ZjU1MzQiLCJwbGF5U2Vzc2lvbiI6IlBPVC1ELWIwN2Q1MzBiLTU5NDEtNDVmNy04YjhmLWI5YjdhMWMxYzQ5YXtzNH0iLCJDb3JyZWxhdGlvbklkIjoiT05FRElHSVRBTC0xMDZhYjkxNy1mNGFjLTQyODEtODM5ZS1kMTVjYzA5OTQyNmQtVC0xNTg4NjQ4OTYxNjEwIn0sIm5iZiI6MTU4ODY0ODk2MSwiaWF0IjoxNTg4NjQ4OTYxfQ.jJhfEty9jzNrVtZXMU5yc2JKNQA_Y2Yei1a9QK-UoC4; GlobalSessionID=sfasdfasdf65765676fsadfas7f678sdf; billingId=Sanjeev",
+                "postman-token": "0d40cbae-a0b2-4f9b-83a2-317cdd2f6ce3",
+                "x-origin-path": "/jsonUri1/",
+                "connection": "keep-alive",
+                "x-forwarded-for": "10.20.216.50",
+                "x-custom-hdr": "Custom Header 1",
+                "accept-encoding": "gzip, deflate, br"
+            },
+            "jsonPayload": {
+                "requestId": "b5d574f519ab49f180655c0eb0100fde",
+                "context": {
+                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36",
+                    "timeOffsetInMinutes": -300,
+                    "channel": "web",
+                    "screen": {
+                        "width": 1680,
+                        "height": 1050,
+                        "orientation": "landscape",
+                        "colorDepth": 30,
+                        "pixelRatio": 2
+                    },
+                    "window": {
+                        "width": 894,
+                        "height": 971
+                    },
+                    "browser": {
+                        "host": "www.verizonwireless.com"
+                    },
+                    "address": {
+                        "url": "https://www.verizonwireless.com/",
+                        "referringUrl": ""
+                    }
+                },
+                "id": {
+                    "tntId": "d3992c0b1e334579a6f18cb44663cace.17_0",
+                    "marketingCloudVisitorId": "90270277400068389392348157107682305427",
+                    "customerIds": [
+                        {
+                            "id": "fdef9bde71bb4b758d3d523c9687f73e",
+                            "integrationCode": "glid",
+                            "authenticatedState": "logged_out"
+                        }
+                    ]
+                },
+                "property": {
+                    "token": "c6eb96a0-8792-9a48-537b-8c3461cd23b0"
+                },
+                "experienceCloud": {
+                    "audienceManager": {
+                        "locationHint": 9,
+                        "blob": "RKhpRz8krg2tLO6pguXWp5olkAcUniQYPHaMWWgdJ3xzPWQmdj0y"
+                    },
+                    "analytics": {
+                        "logging": "server_side",
+                        "supplementalDataId": "3C5DDA0F480D0073-7AD38CA838199CC7",
+                        "trackingServer": "analytics.verizonwireless.com",
+                        "trackingServerSecure": "sanalytics.verizonwireless.com"
+                    }
+                },
+                "execute": {
+                    "pageLoad": {
+                        "parameters": {
+                            "pathname": "/",
+                            "deviceType": "desktop",
+                            "flowType": "home page",
+                            "pageType": "postpaid_homepage"
+                        },
+                        "profileParameters": {
+                            "typeIndicator": "prospect",
+                            "loggedin": false,
+                            "custType": "b2c"
+                        }
+                    }
+                },
+                "prefetch": {
+                    "views": [
+                        {
+                            "parameters": {
+                                "pathname": "/",
+                                "deviceType": "desktop",
+                                "flowType": "home page",
+                                "pageType": "postpaid_homepage"
+                            },
+                            "profileParameters": {
+                                "typeIndicator": "prospect",
+                                "loggedin": false,
+                                "custType": "b2c"
+                            }
+                        }
+                    ]
+                }
+            },
+            "payLoad": ""
+        }
+    ]
     };
   },
   created() {
+    console.log(this.parserMode)
+    adminService.getUrlStatus(this.parserMode)
+    /*
     headerStatusService.getAllParameters().then(response => {
-      // this.urlheaderStatuses = response.content || [];
+	this.urlheaderStatuses = response.content || [];
+    //   this.urlheaderStatuses.forEach(sample => {
+    //     if (sample.xmlPayload) {
+    //       sample["payLoad"] = sample.xmlPayload;
+    //     } else if (sample.jsonPayload) {
+    //       sample["payLoad"] = sample.jsonPayload;
+    //     } else if (sample.formData) {
+    //       sample["payLoad"] = sample.formData;
+    //     }
+    //   });
     });
+    */
   },
-  methods: {
-    extractSelectedHeaders(index) {
-      this.selectedSampleIndex = index;
-      this.selectedSample = this.urlheaderStatuses[this.selectedSampleIndex];
-      localStorage.setItem("samples", JSON.stringify(this.urlheaderStatuses));
-      console.log("submitSelectedHeaders" , index);
-    },
-    submitSelectedHeaders() {
-      localStorage.setItem("samples", JSON.stringify(this.urlheaderStatuses));
-      console.log("submitSelectedHeaders");
-    },
-    getSelectedSampleHeaders() {
-      const ha = JSON.parse(localStorage.getItem("samples"))[this.selectedSampleIndex].requestHeaders.filter(s => s.selected);
-      console.log(JSON.stringify(ha));
-      const m = ha.map(h=>{return {
-        headerKey: h.key,
-        headerValue: h.value
-      }});
-      console.log('get sel', JSON.stringify(m))
-      return m;
-    }
-  }
+  methods: {}
 };
 </script>
 
 <style>
-.modal-footer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.url-title {
-  display: flex;
-  align-items: center;
-
-  label {
-    margin-bottom: 0;
-  }
-}
-
-.section-header {
-  color: gray;
-}
-
-.section-content {
-  margin-left: 24px;
-}
-
-.content-label {
-    width: 112px;
-}
-.header-container{
-  display:flex;
-  flex-direction: row; 
-  padding-bottom:10px;
-  
-}
 </style>

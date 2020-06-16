@@ -1,5 +1,14 @@
-{
-    "content": [
+<template>
+  <div>
+    
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+            headers:[
         {
             "requestUrl": "/xmlUri/",
             "requestHeaders": {
@@ -139,5 +148,18 @@
             },
             "payLoad": ""
         }
-    ]
-}
+    ],
+
+        form: {
+           
+         
+          name: 'sv'
+         
+        },
+       
+        show: true
+      }
+    },
+   
+  }
+</script>

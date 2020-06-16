@@ -1,17 +1,16 @@
 <template>
-    <div class="jumbotron">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-10">
-                    <router-view></router-view>
-                </div>
-            </div>
-        </div>
-    </div>
+  <b-container id="um-containerp-top" fluid>
+    <router-view></router-view>
+    <Footer></Footer>
+  </b-container>
 </template>
 
 <script>
+
+import Footer from "./shared/components/footer/Footer";
+
 export default {
-    name: 'app'
+  name: "app",
+  components: {  Footer }
 };
 </script>

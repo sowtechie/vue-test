@@ -1,12 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import FormRule from '../pages/FormRule';
+import HomePage from '../home/HomePage';
 import AdminPage from '../pages/AdminPage';
-import HomePage from '../pages/HomePage';
 import HeadersStatus from '../pages/HeadersStatus';
-import SelectedHeaders from '../pages/SelectedHeaders';
+
+import EditRule from '../pages/EditRule';
+import UrlManager from '../pages/UrlManager';
+
+import Search from '../components/search/Search';
+import ElasticRule from '../components/elrule/ElasticRule';
+import {BootstrapVueIcons} from 'bootstrap-vue';
+
 
 
 Vue.use(Router);
+Vue.use(BootstrapVueIcons)
+
 
 export const router = new Router({
   base: 'vue-admin-ui',
@@ -15,13 +25,18 @@ export const router = new Router({
     { path: '/', component: HomePage },
     { path: '/admin', component: AdminPage },
     { path: '/samples', component:HeadersStatus },
-    // { path: '/selectedHeaders', component:SelectedHeaders },
-    // { path: '/formRule', component:FormRule },
-    // // otherwise redirect to home
+    { path: '/formRule', component:FormRule },
+    
+    { path: '/editRule', component:EditRule },
+    { path:'/svm', component:UrlManager},
+    
+
+    { path:'/search', component:Search},
+    { path:'/svel', component:ElasticRule} ,
+    // otherwise redirect to home
     { path: '*', redirect: '/' }
   ]
 });
-//sv add roue comments
 
 // router.beforeEach((to, from, next) => {
 //   // redirect to login page if not logged in and trying to access a restricted page

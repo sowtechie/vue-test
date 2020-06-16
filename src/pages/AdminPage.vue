@@ -11,14 +11,14 @@
             <div>
               <div>
                 <input v-model="parserMode" type="radio" id="parserOn" name="parser" value=true />
-                <label for="parserOn">Data Capture On</label>
+                <label for="parserOn">On</label>
                 <br />
                 <input v-model="parserMode" type="radio" id="parserOff" name="parser" value=false />
-                <label for="parserOff">Data Capture Off</label>
+                <label for="parserOff">Off</label>
                 <br />
               </div>
               <div>
-                <button type="button" class="btn btn-primary" v-on:click="setParser()">Save</button>
+                <button v-on:click="setParser()">Save</button>
               </div>
             </div>
           </div>
