@@ -36,7 +36,7 @@
       <b-col class="col-3 um-sidebar-right">
        
         
-        <ElSideBar  v-on:svrefresh="svrefreshPicker"></ElSideBar>
+        <ElSideBar v-on:svblank="blankOutPicker"  v-on:svrefresh="svrefreshPicker"></ElSideBar>
         
         
       </b-col>
@@ -44,7 +44,7 @@
        
          
         
-        <ElPicker  v-on:created="onTagCreated"    v-bind:generalHeaders="pointerGerenal"   v-bind:responseHeaders="pointerResponse" v-bind:selectedRuleUri="pointerRule"> </ElPicker>
+        <ElPicker v-show="showPicker"  v-on:created="onTagCreated"    v-bind:generalHeaders="pointerGerenal"   v-bind:responseHeaders="pointerResponse" v-bind:selectedRuleUri="pointerRule"> </ElPicker>
         
       </b-col>
     </b-row>
@@ -69,6 +69,7 @@ export default {
   components: { ElSideBar, ElPicker},
   data() {
     return {
+      showPicker : false,
       pointerRule:"https://www.verizon.com/home/phone/",
       pointerGerenal:{
                 "url": "https://www.verizon.com/home/phone/",
@@ -110,8 +111,15 @@ export default {
     };
   },
   methods: {
+    blankOutPicker(e){
+       console.log('sv empty---');
+       this.showPicker = false;
+
+    },
     svrefreshPicker(p){
-     
+      this.showPicker = true;
+      console.log('sv---');
+      console.log(p);
       let ruleId = p.rule;
       this.pointerGerenal = p.generalHeaders;
       this.pointerResponse = p.responseHeaders;

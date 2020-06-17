@@ -61,15 +61,11 @@
         <div class="s-container">
           <div class="s-box2">
             <div>
-              <span>
-                <i class="fa fa-globe nw-ping-cue"></i>
-              </span>
+             
               <span class="space-left">{{row.item.created_last}}</span>
             </div>
             <div>
-              <span>
-                <i class="fa fa-edit nw-edge-cue"></i>
-              </span>
+             
               <span class="space-left">SV{{row.item.rule_uri}}</span>
             </div>
           </div>
@@ -668,6 +664,12 @@ export default {
           console.log(
             "Services has empty data content is empty array expected list of sampling urls"
           );
+           let param = {
+              type:'EMPTY_RULES'
+           };
+            this.svcol = response.data.content;
+            this.$emit("svblank", param);
+            return;
         }
         this.svcol = response.data.content;
         console.log("sv ---got server data");
