@@ -19,7 +19,8 @@
 }
 .um-sidebar-right{
     border-right:1px solid #ccc3c3 !important;
-    margin-top: 20px;
+   /* margin-top: 20px; */
+    margin-top: 9px;
     margin-left: 16px;
     max-height: 440px;
     overflow: scroll;
@@ -91,4 +92,8 @@
    /* padding-right: 0.3rem; */
     vertical-align: top;
     border-top: 1px solid #dee2e6;
+}
+
+#svsidebar thead{
+    display: none;
 }

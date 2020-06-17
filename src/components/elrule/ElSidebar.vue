@@ -1,5 +1,15 @@
 <template>
   <div>
+    <b-row >
+       <div class="sideh-container">
+                <span><a href="#">Select All </a></span>
+               <div class="a-container" style="padding-left: 163px;">
+                   <span> <a href="#">New </a> </span>
+                  <span style="padding-left: 10px;"><a href="#">Ignored </a></span>
+               </div> 
+               
+              </div>
+    </b-row>
     <b-table
       id="svsidebar"
       sticky-header
@@ -38,7 +48,7 @@
               <span>
                 <i class="fa fa-edit nw-edge-cue"></i>
               </span>
-              <span class="space-left">SV{{row.item.rule_uri}}</span>
+              <span class="space-left">{{row.item.rule_uri}}</span>
             </div>
           </div>
         </div>
@@ -716,5 +726,27 @@ export default {
 table .table .thead-light th {
   background-color: #fff !important;
   border-top: 0px !important;
+}
+
+.sideh-container{
+   color: blue !important;
+   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+
+}
+.sideh-container span, a {
+   color: blue !important;
+}
+.a-container{
+   display: flex;
+  flex-direction: row;
+  justify-content: right;
+
+}
+
+.sideh-container > span{
+  padding-left: 15px;
 }
 </style>
