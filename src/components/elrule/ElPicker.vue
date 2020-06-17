@@ -4,26 +4,24 @@
       <b-row class="block-start">
         <b-col class="col-1"></b-col>
         <b-col class="col-6 sv-header-row">
-          <div class="t-container">
-            <span>
+          <div class="pick-action-container">
+            <span class="pick-cb-offset">
               <b-form-checkbox
                 id="checkboxes-21"
                 @change="selectAllPicker"
                 v-model="formBar.gallPicker"
               >Select All</b-form-checkbox>
             </span>
-            <div id="extract-action-1" class="extract-start">
-              
-              <a @click="showModal">
-               
-                <i class="fa fa-play-circle" style="font-size:18px;color:green;"></i>
-              </a>
+            <div id="extract-action-1" class="extract-start" style="padding-bottom:10px;">
+              <b-button variant="info" size="sm" class="float-left" @click="showModal">Ignore</b-button>
+              <b-button
+                variant="success"
+                style="margin-left:15px;"
+                size="sm"
+                class="float-left"
+                @click="showModal"
+              >Extract</b-button>
             </div>
-            <b-tooltip target="extract-action-1" triggers="hover">
-              Extract
-              <b>origin headers</b> to push to Elastic Server!
-            </b-tooltip>
-
           </div>
         </b-col>
       </b-row>
@@ -43,13 +41,7 @@
                     v-model="form.gall"
                   >Request Headers</b-form-checkbox>
                 </span>
-                <div v-b-tooltip.click="'Tooltip!'" id="general-action-1" class="extract-start">
-                  <i class="fa fa-cog g-cue"></i>
-                </div>
-                <b-tooltip target="general-action-1" triggers="hover">
-                  Extract
-                  <b>origin headers</b> to push to Elastic Server!
-                </b-tooltip>
+               
               </div>
             </b-row>
           </b-form-group>
@@ -80,13 +72,7 @@
                     v-model="form.gresponseAll"
                   >Response Headers</b-form-checkbox>
                 </span>
-                <div id="edgers-action-1" class="extract-start">
-                  <i class="fa fa-glass org-hdr-cue"></i>
-                </div>
-                <b-tooltip target="edgers-action-1" triggers="hover">
-                  Select
-                  <b>response headers</b> to push to Elastic Server!
-                </b-tooltip>
+               
               </div>
             </b-row>
           </b-form-group>
@@ -105,8 +91,6 @@
           </b-form-group>
         </b-col>
       </b-row>
-
-
 
       <!--response.. --->
     </b-form>
@@ -132,7 +116,7 @@
             <b-col class="col-1"></b-col>
             <b-col class="col-7">
               <div class="t-container">
-                <span>General Headers</span>
+                <span>Request Headers</span>
                 <div id="edgers-action-32" class="extract-start">
                   <i class="fa fa-cog g-cue"></i>
                 </div>
@@ -209,14 +193,17 @@
       </b-container>
 
       <template v-slot:modal-footer>
-        
         <div class="w-100">
-
-        
           <b-button variant="primary" size="sm" class="float-left" @click="hideModal">Back</b-button>
-           
-          <b-button variant="success" size="sm" style="margin-left:20px;" class="float-right" @click="okModal">Publish</b-button>
-          <b-button variant="danger" size="sm" class="float-right " @click="hideModal">Cancel</b-button>
+
+          <b-button
+            variant="success"
+            size="sm"
+            style="margin-left:20px;"
+            class="float-right"
+            @click="okModal"
+          >Publish</b-button>
+          <b-button variant="danger" size="sm" class="float-right" @click="hideModal">Cancel</b-button>
         </div>
       </template>
     </b-modal>
@@ -224,13 +211,12 @@
 </template>
 
 <script>
-
 export default {
   props: ["generalHeaders", "responseHeaders", "selectedRuleUri"],
   data() {
     return {
       //api
-      svcol:null,
+      svcol: null,
       //modal
       footerBgVariant: "light",
       footerTextVariant: "dark",
@@ -276,61 +262,53 @@ export default {
 
         responseGroupchecked: []
       },
-    
+
       show: true
     };
   },
 
   methods: {
     onOrigin() {
-     //sv
+      //sv
     },
-    
+
     checkFormValidity() {
       const valid = this.$refs.svpushform.checkValidity();
-     
+
       this.nameState = valid;
       return valid;
     },
 
     resetModal(e) {
-  
       this.name = "";
       this.nameState = null;
     },
     okModal(e) {
       e.preventDefault();
 
- 
-
       this.handleExtract();
     },
     handleExtract() {
-     
       let isValid = this.checkFormValidity();
       if (!isValid) {
         console.log("form invalud");
         return;
       }
-      
+
       this.submittedNames.push(this.name);
       this.hideModal();
-     
     },
     showModal() {
       let keys = this.form.responseGroupchecked;
       if (keys.length < 1) {
-       
         return;
       }
       keys = this.form.checked;
       if (keys.length < 1) {
-   
         return;
       }
       this.applyTransform();
       this.$refs["push-workflow"].show();
-     
     },
     hideModal() {
       this.$refs["push-workflow"].hide();
@@ -348,12 +326,11 @@ export default {
         let n = keys[i];
         this.pipeGeneral[n] = this.generalHeaders[n];
       }
-      
     },
     dynaResponseRules: function() {
       let rules = [];
       let hdr1 = this.pipeResponse;
-   
+
       let hdr = Object.keys(hdr1);
 
       for (let i = 0; i < hdr.length; i++) {
@@ -372,13 +349,13 @@ export default {
         rules.push(item);
       }
       let o = rules;
-   
+
       return rules;
     },
     dynaGeneralRules: function() {
       let rules = [];
       let hdr1 = this.pipeGeneral;
-    
+
       let hdr = Object.keys(hdr1);
 
       for (let i = 0; i < hdr.length; i++) {
@@ -396,7 +373,7 @@ export default {
         rules.push(item);
       }
       let o = rules;
-   
+
       return rules;
     },
     selectAllPicker() {
@@ -406,7 +383,6 @@ export default {
         this.form.checked = keys;
 
         let rkeys = Object.keys(this.responseHeaders);
-      
 
         this.form.responseGroupchecked = rkeys;
         this.form.gall = true;
@@ -420,7 +396,7 @@ export default {
     },
     selectAllGe() {
       this.ghall = !this.ghall;
-    
+
       if (this.ghall === true) {
         let keys = Object.keys(this.generalHeaders);
         this.form.checked = keys;
@@ -430,10 +406,9 @@ export default {
     },
     selectAllRh() {
       this.rhall = !this.rhall;
-     
+
       if (this.rhall === true) {
         let keys = Object.keys(this.responseHeaders);
-      
 
         this.form.responseGroupchecked = keys;
       } else {
@@ -486,7 +461,7 @@ export default {
         rules.push(item);
       }
       let o = rules;
-    
+
       return rules;
     },
     fieldGeStates: function() {
@@ -505,7 +480,7 @@ export default {
       let hdr1 = this.generalHeaders;
 
       let hdr = Object.keys(hdr1);
-    
+
       for (let i = 0; i < hdr.length; i++) {
         let key = hdr[i];
         let v = hdr1[key];
@@ -522,7 +497,7 @@ export default {
         rules.push(item);
       }
       let o = rules;
-      
+
       return rules;
     },
     filteredOrigins() {
@@ -535,11 +510,13 @@ export default {
 <style scoped>
 .extract-start {
   padding-left: 10px;
+  padding-bottom: 10px;
 }
 .sv-header-row {
   margin-left: 0;
   padding-left: 0px;
 }
+
 .t-container {
   display: flex;
   flex-direction: row;
@@ -580,8 +557,8 @@ export default {
 .btn {
   display: inline-block;
   font-weight: 400;
-/*  color: #212529; */
-color:#fff;
+  /*  color: #212529; */
+  color: #fff;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -607,5 +584,15 @@ footer {
   background-color: #fff;
 }
 
+.pick-action-container {
+  display: flex;
+  flex-direction: row;
 
+  padding-bottom: 1px;
+  padding-top: 10px;
+  border-bottom: 1px solid #ccc3c3;
+}
+.pick-cb-offset {
+  margin-top: 10px;
+}
 </style>

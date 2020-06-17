@@ -33,12 +33,28 @@
     >
       <template v-slot:cell(selected)="{ rowSelected }">
         <template v-if="rowSelected">
+           <div style="margin-top:10px;">
+                  <b-form-checkbox
+                   
+                    v-model="rowSelected"
+                  ></b-form-checkbox>
+         </div>
+          <!--
           <span aria-hidden="true">&check;</span>
           <span class="sr-only">Selected</span>
+          -->
         </template>
         <template v-else>
+           <span style="padding-top:10px;">
+                  <b-form-checkbox
+                   
+                    v-model="rowSelected"
+                  ></b-form-checkbox>
+         </span>
+          <!--
           <span aria-hidden="true">&nbsp;</span>
           <span class="sr-only">Not selected</span>
+          -->
         </template>
       </template>
       <template v-slot:cell(rule_uri)="row">
@@ -756,10 +772,22 @@ table .table .thead-light th {
 }
 
 .sideh-container > span{
-  padding-left: 15px;
+  padding-left: 27px;
 }
 
+
 .a-offset{
-  padding-left: 138px;
+  padding-left: 125px;
+}
+
+
+
+
+tr td span .custom-control {
+   top: 10px;
+    position: relative;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5rem;
 }
 </style>
