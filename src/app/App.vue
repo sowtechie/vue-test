@@ -1,7 +1,7 @@
 <template>
   <b-container id="um-containerp-top" fluid>
     <router-view></router-view>
-    <Footer></Footer>
+   
   </b-container>
 </template>
 
