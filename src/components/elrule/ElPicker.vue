@@ -202,11 +202,15 @@
         </form>
       </b-container>
 >
-      <template v-slot:modal-footer>
+     <template v-slot:modal-footer>
         <div class="w-100">
-          <b-button variant="primary" size="sm" class="float-right" @click="okModal">Close</b-button>
+          <b-button variant="primary" size="sm" class="float-left" @click="hideModal">Back</b-button>
+           
+          <b-button variant="primary" size="sm" class="float-right" @click="okModal">Publish</b-button>
+          <b-button variant="primary" size="sm" class="float-right" @click="hideModal">Cancel</b-button>
         </div>
       </template>
+      
     </b-modal>
   </div>
 </template>
