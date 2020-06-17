@@ -6,15 +6,7 @@
         <p>
             <router-link to="/samples">New Requests Observed</router-link>
         </p>
-         <p>
-            <router-link to="/editRule">Edit Rule</router-link>
-        </p>
-        <p>
-                <router-link to="/svm">Url Manager</router-link>
-        </p>
-         <p>
-                <router-link to="/search">search</router-link>
-        </p>
+        
           <p>
                 <router-link to="/svel">Elastic Rule</router-link>
         </p>
