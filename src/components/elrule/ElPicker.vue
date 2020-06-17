@@ -13,6 +13,7 @@
               >Select All</b-form-checkbox>
             </span>
             <div id="extract-action-1" class="extract-start">
+              
               <a @click="showModal">
                
                 <i class="fa fa-play-circle" style="font-size:18px;color:green;"></i>
@@ -22,6 +23,7 @@
               Extract
               <b>origin headers</b> to push to Elastic Server!
             </b-tooltip>
+
           </div>
         </b-col>
       </b-row>
@@ -39,7 +41,7 @@
                     id="checkboxes-2"
                     @change="selectAllGe"
                     v-model="form.gall"
-                  >General Headers</b-form-checkbox>
+                  >Request Headers</b-form-checkbox>
                 </span>
                 <div v-b-tooltip.click="'Tooltip!'" id="general-action-1" class="extract-start">
                   <i class="fa fa-cog g-cue"></i>
