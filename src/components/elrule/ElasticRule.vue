@@ -5,7 +5,7 @@
       <div class="search-filter col-sm-12 col-md-12 col-lg-12" id="sticky_filter">
         <div class="rule-container">
           <div class="bodycontainer">
-            <h4 class="member-heading">Edge Security Manager</h4>
+            <h4 class="member-heading">URL Manager</h4>
           </div>
           <div class="formContainer">
             <b-row class="mb-2 um-top-bar um-form">
