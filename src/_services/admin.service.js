@@ -12,7 +12,7 @@ function setParser(parser) {
         method: 'POST',
         headers: authHeader(),
         body: JSON.stringify({
-            "parser":  parser 
+            "allowTraffic":  parser 
         })
     };
     return fetch(`${config.adminUrl}/parser`, requestOptions).then(resp => {
@@ -31,7 +31,7 @@ function getUrlStatus(parser) {
         method: 'GET',
         headers: authHeader(),
     };
-    return fetch(`${config.adminUrl}/urls/getUrlStatus`, requestOptions).then(handleResponse);
+    return fetch(`${config.adminUrl}/getAllParameters`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
