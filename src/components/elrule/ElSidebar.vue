@@ -159,13 +159,13 @@ export default {
           o["is_selected"] = false;
           o["created_last"] = "08/1 10:00 AM";
           if (!o["responseHeaders"]) {
-            o["responseHeaders"] = { ...o["requestHeaders"] };
+            o["responseHeaders"] = {};
           }
           if (
             o["responseHeaders"] &&
             Object.keys(o["responseHeaders"]).length < 1
           ) {
-            o["responseHeaders"] = { ...o["requestHeaders"] };
+            o["responseHeaders"] = {  };
           }
         });
 

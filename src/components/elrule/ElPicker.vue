@@ -41,7 +41,7 @@
                     v-model="form.gall"
                   >Request Headers</b-form-checkbox>
                 </span>
-               
+
               </div>
             </b-row>
           </b-form-group>
@@ -72,7 +72,7 @@
                     v-model="form.gresponseAll"
                   >Response Headers</b-form-checkbox>
                 </span>
-               
+
               </div>
             </b-row>
           </b-form-group>
@@ -98,112 +98,110 @@
     <!--svc -->
     <!--modal-->
 
-    <b-modal
-      id="modal-prevent-closing"
-      ref="push-workflow"
-      size="lg"
-      :footer-text-variant="footerTextVariant"
-      :footer-bg-variant="footerBgVariant"
-    >
-      <template v-slot:modal-header>
-        <div class="d-block text-center push-hdr">
-          <span>{{selectedRuleUri}}</span>
+  <b-modal id="modal-prevent-closing" ref="push-workflow" size="lg" hide-header>
+      <div style="display: flex; flex-direction: row">
+        <div style="text-decoration: underline" @click="hideRuleSets">
+          <b>Name Assets</b>
         </div>
-      </template>
-      <b-container fluid>
-        <form ref="svpushform" @submit.stop.prevent="handleSubmit">
-          <b-row class="block-start">
-            <b-col class="col-1"></b-col>
-            <b-col class="col-7">
-              <div class="t-container">
-                <span>Request Headers</span>
-                <div id="edgers-action-32" class="extract-start">
-                  <i class="fa fa-cog g-cue"></i>
-                </div>
-                <b-tooltip target="edgers-action-32" triggers="hover">
-                  Select
-                  <b>response headers</b> to push to Elastic Server!
-                </b-tooltip>
-              </div>
-            </b-col>
-          </b-row>
-          <b-row class="block-start">
-            <b-col class="col-2"></b-col>
-            <b-col class="col-7">
-              <b-form-group
-                v-for="dynaRule in dynaGeneralRules() "
-                :id="dynaRule.id"
-                :label="dynaRule.label"
-                :label-for="dynaRule.labelFor"
-                :description="dynaRule.description"
-                :state="fieldGeStates[dynaRule.label]"
-                invalid-feedback="Please enter valid value"
-              >
-                <b-form-input
-                  :id="dynaRule.labelFor"
-                  maxlength="30"
-                  v-model="form[dynaRule.label]"
-                  :state="fieldGeStates[dynaRule.label]"
-                  required
-                  :placeholder="dynaRule.placeholder"
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <!--rsh-->
-          <b-row class="block-start">
-            <b-col class="col-1"></b-col>
-            <b-col class="col-7">
+        <!-- <div style="padding-left: 12px; text-decoration: underline" @click="showRuleSets">Set Rules</div> -->
+      </div>
+
+        <div class="my-2 d-block push-hdr">
+          <div>
+            <b>{{selectedRuleUri}}</b>
+          </div>
+        </div>
+      <hr>
+      <div>
+        <b-row class="my-1">
+          <b-col sm="3">
+            <label for="input-invalid">Friendly Url:</label>
+          </b-col>
+          <div  style = "width: 50%">
+            <b-form-input id="input-invalid" placeholder="Friendly Url"></b-form-input>
+          </div>
+        </b-row>
+        <b-row class="my-1">
+          <b-col sm="3">
+            <label for="input-invalid">Group Names:</label>
+          </b-col>
+          <div style = "width: 50%">
+            <b-form-input id="input-invalid" placeholder="Group Name"></b-form-input>
+          </div>
+        </b-row>
+      </div>
+
+      <div v-if="!displayRuleSets">
+        <b-container fluid>
+          <form ref="svpushform" @submit.stop.prevent="handleSubmit">
+            <div class="t-container">
+              <!-- from popup -->
+              <div>General Headers</div>
+            </div>
+<b-row class="block-start">
+              <b-col class="col-12">
+                <b-container fluid>
+                  <div style="display: flex; flex-direction: row; align-items: center" class="my-1" v-for="dynaRule in dynaGeneralRules() " :key="type">
+                    <div class="label-class">
+                      <label :for="`type-${type}`">{{ dynaRule.label }}:</label>
+                    </div>
+                    <div style="width: 50%">
+                      <b-form-input
+                        :id="dynaRule.labelFor"
+                        v-model="form[dynaRule.label]"
+                        required
+                        :placeholder="dynaRule.placeholder"
+                      ></b-form-input>
+                    </div>
+                  </div>
+                </b-container>
+              </b-col>
+            </b-row>
+            <!--rsh-->
+            <b-row class="block-start">
               <div class="t-container">
                 <span>Response Headers</span>
-                <div id="edgers-action-41" class="extract-start">
-                  <i class="fa fa-glass org-hdr-cue"></i>
-                </div>
+                <div id="edgers-action-41" class="extract-start"></div>
                 <b-tooltip target="edgers-action-41" triggers="hover">
                   Select
                   <b>response headers</b> to push to Elastic Server!
                 </b-tooltip>
               </div>
-            </b-col>
-          </b-row>
-          <b-row class="block-start">
-            <b-col class="col-2"></b-col>
-            <b-col class="col-7">
-              <b-form-group
-                v-for="dynaRule in dynaResponseRules() "
-                :id="dynaRule.id"
-                maxlength="30"
-                :label="dynaRule.label"
-                :label-for="dynaRule.labelFor"
-                :description="dynaRule.description"
-                :state="fieldRsStates[dynaRule.label]"
-                invalid-feedback="Please enter valid value"
-              >
-                <b-form-input
-                  :id="dynaRule.labelFor"
-                  v-model="form[dynaRule.label]"
-                  :state="fieldRsStates[dynaRule.label]"
-                  required
-                  :placeholder="dynaRule.placeholder"
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-        </form>
-      </b-container>
-
+            </b-row>
+            <b-row class="block-start">
+              <b-col class="col-12">
+                <b-container fluid>
+                  <div style="display: flex; flex-direction: row; align-items: center" class="my-1" v-for="dynaRule in dynaResponseRules() " :key="type">
+                    <div class="label-class">
+                      <label :for="`type-${type}`">{{ dynaRule.label }}:</label>
+                    </div>
+                    <div style="width: 50%">
+                      <b-form-input
+                        :id="dynaRule.labelFor"
+                        v-model="form[dynaRule.label]"
+                        required
+                        :placeholder="dynaRule.placeholder"
+                      ></b-form-input>
+                    </div>
+                  </div>
+                </b-container>
+              </b-col>
+            </b-row>
+          </form>
+        </b-container>
+      </div>
+      <div v-if="displayRuleSets">Show name rules</div>
       <template v-slot:modal-footer>
-        <div class="w-100">
-          <b-button variant="primary" size="sm" class="float-left" @click="hideModal">Back</b-button>
-
-          <b-button
-            variant="success"
-            size="sm"
-            style="margin-left:20px;"
-            class="float-right"
-            @click="okModal"
-          >Publish</b-button>
-          <b-button variant="danger" size="sm" class="float-right" @click="hideModal">Cancel</b-button>
+        <div
+          class="w-100"
+          style="display: flex; flex-direction: row; justify-content: space-between"
+        >
+          <div>
+            <b-button :pressed="true"  variant="secondary" size="sm" class="float-right" @click="hideModal">Cancel</b-button>
+          </div>
+          <div>
+            <b-button  :pressed="true" variant="primary" size="sm" class="float-right" @click="okModal">Next</b-button>
+          </div>
         </div>
       </template>
     </b-modal>
@@ -301,7 +299,7 @@ export default {
     showModal() {
       let keys = this.form.responseGroupchecked;
       if (keys.length < 1) {
-        return;
+         console.log('sv nor esponse headers');
       }
       keys = this.form.checked;
       if (keys.length < 1) {
@@ -342,7 +340,7 @@ export default {
           defaultValue: v,
           labelFor: "input-" + i,
 
-          placeholder: "Like Value ",
+          // placeholder: "Like Value ",
           description: "Enter " + key
         };
         this.form[key] = "";
@@ -366,7 +364,7 @@ export default {
           label: key,
           defaultValue: "",
           labelFor: "input-ge" + i,
-          placeholder: "Enter value ",
+          // placeholder: "Enter value ",
           description: "Enter  " + key
         };
         this.form[key] = "";
@@ -572,8 +570,7 @@ export default {
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
 /*
 footer {
     background-color: #fff;
@@ -581,8 +578,7 @@ footer {
     padding-bottom: 0px;
 }*/
 .modal-footer {
-  background-color: #fff;
-}
+  background-color: lightgray!important; }
 
 .pick-action-container {
   display: flex;
@@ -594,5 +590,9 @@ footer {
 }
 .pick-cb-offset {
   margin-top: 10px;
+}
+.label-class {
+  width: 134px;
+  flex-shrink: 0;
 }
 </style>
