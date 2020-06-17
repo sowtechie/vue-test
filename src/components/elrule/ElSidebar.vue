@@ -2,8 +2,14 @@
   <div>
     <b-row >
        <div class="sideh-container">
-                <span><a href="#">Select All </a></span>
-               <div class="a-container" style="padding-left: 163px;">
+                <span> <span>
+              <b-form-checkbox
+                id="checkboxes-21"
+               
+                v-model="formSideBar.gallRules"
+              >Select All</b-form-checkbox>
+            </span></span>
+               <div class="a-container a-offset" >
                    <span> <a href="#">New </a> </span>
                   <span style="padding-left: 10px;"><a href="#">Ignored </a></span>
                </div> 
@@ -48,7 +54,7 @@
               <span>
                 <i class="fa fa-edit nw-edge-cue"></i>
               </span>
-              <span class="space-left">{{row.item.rule_uri}}</span>
+              <span class="space-left">SV{{row.item.rule_uri}}</span>
             </div>
           </div>
         </div>
@@ -76,6 +82,9 @@ import config from "config";
 export default {
   data() {
     return {
+      formSideBar:{
+        gallRules : false        
+      },
       //api
       svcol: null,
       //api..
@@ -748,5 +757,9 @@ table .table .thead-light th {
 
 .sideh-container > span{
   padding-left: 15px;
+}
+
+.a-offset{
+  padding-left: 138px;
 }
 </style>
