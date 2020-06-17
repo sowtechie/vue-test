@@ -104,6 +104,8 @@
         </b-col>
       </b-row>
 
+
+
       <!--response.. --->
     </b-form>
 
@@ -201,25 +203,30 @@
           </b-row>
         </form>
       </b-container>
->
-     <template v-slot:modal-footer>
+
+      <template v-slot:modal-footer>
+        
         <div class="w-100">
+
+        
           <b-button variant="primary" size="sm" class="float-left" @click="hideModal">Back</b-button>
            
-          <b-button variant="primary" size="sm" class="float-right" @click="okModal">Publish</b-button>
-          <b-button variant="primary" size="sm" class="float-right" @click="hideModal">Cancel</b-button>
+          <b-button variant="success" size="sm" style="margin-left:20px;" class="float-right" @click="okModal">Publish</b-button>
+          <b-button variant="danger" size="sm" class="float-right " @click="hideModal">Cancel</b-button>
         </div>
       </template>
-      
     </b-modal>
   </div>
 </template>
 
 <script>
+
 export default {
   props: ["generalHeaders", "responseHeaders", "selectedRuleUri"],
   data() {
     return {
+      //api
+      svcol:null,
       //modal
       footerBgVariant: "light",
       footerTextVariant: "dark",
@@ -269,10 +276,12 @@ export default {
       show: true
     };
   },
+
   methods: {
     onOrigin() {
      //sv
     },
+    
     checkFormValidity() {
       const valid = this.$refs.svpushform.checkValidity();
      
@@ -568,14 +577,15 @@ export default {
 .btn {
   display: inline-block;
   font-weight: 400;
-  color: #212529;
+/*  color: #212529; */
+color:#fff;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: transparent;
+  /*background-color: transparent; */
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
@@ -593,4 +603,6 @@ footer {
 .modal-footer {
   background-color: #fff;
 }
+
+
 </style>
