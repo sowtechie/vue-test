@@ -155,6 +155,7 @@
               >
                 <b-form-input
                   :id="dynaRule.labelFor"
+                  maxlength="30"
                   v-model="form[dynaRule.label]"
                   :state="fieldGeStates[dynaRule.label]"
                   required
@@ -185,6 +186,7 @@
               <b-form-group
                 v-for="dynaRule in dynaResponseRules() "
                 :id="dynaRule.id"
+                maxlength="30"
                 :label="dynaRule.label"
                 :label-for="dynaRule.labelFor"
                 :description="dynaRule.description"
@@ -385,7 +387,6 @@ export default {
           label: key,
           defaultValue: "",
           labelFor: "input-ge" + i,
-
           placeholder: "Enter value ",
           description: "Enter  " + key
         };
