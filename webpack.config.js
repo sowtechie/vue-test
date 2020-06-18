@@ -14,6 +14,11 @@ module.exports = {
                 use: 'vue-loader'
             },
             {
+                test: /\.css?$/,
+               /* exclude: /(node_modules)/, */
+                use: ['style-loader', 'css-loader']
+            },
+            {
                 test: /\.js?$/,
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
@@ -31,8 +36,8 @@ module.exports = {
         // global app config object
         config: JSON.stringify({
             apiUrl: 'http://localhost:4000',
-            adminUrl: 'http://localhost:8080',
-            headerStatusUrl: 'http://localhost:8080',
+            adminUrl: 'http://localhost:8899',
+            headerStatusUrl: 'http://localhost:8899',
         })
     }
 }
