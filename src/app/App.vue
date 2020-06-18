@@ -1,13 +1,16 @@
 <template>
-    <div>
-        <div class="container-fluid">
-            <router-view></router-view>
-        </div>
-    </div>
+  <b-container id="um-containerp-top" fluid>
+    <router-view></router-view>
+   
+  </b-container>
 </template>
 
 <script>
+
+import Footer from "./shared/components/footer/Footer";
+
 export default {
-    name: 'app'
+  name: "app",
+  components: {  Footer }
 };
 </script>
