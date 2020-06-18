@@ -12,7 +12,7 @@ function setParser(parser) {
         method: 'POST',
         headers: authHeader(),
         body: JSON.stringify({
-            "allowTraffic":  parser 
+            "allowTraffic": "" + parser + ""
         })
     };
     return fetch(`${config.adminUrl}/parser`, requestOptions).then(resp => {
