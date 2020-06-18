@@ -1,0 +1,225 @@
+.navigation-desktop {
+    min-height: 70px;
+    background-color: #fff;
+    border-bottom: 2px solid #eee;
+}
+
+.navigation-desktop .top-nav-wrap {
+    border-bottom: 2px solid #eee;
+    margin: 0;
+}
+
+.navigation-desktop .top-nav-wrap .top-navigations {
+    height: 34px;
+    max-width: 1600px;
+    margin: auto;
+    padding: 0 34px;
+}
+
+.navigation-desktop .top-nav-wrap .top-navigations .nav {
+    margin-top: -3px;
+    color: #767676;
+}
+
+.navigation-desktop .top-nav-wrap .top-navigations .nav .portal-links {
+    line-height: 28px;
+    margin-right: 0;
+    margin-left: auto;
+    margin-top: 5px;
+}
+
+.nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.navigation-desktop .top-nav-wrap .top-navigations .nav .portal-links li:not(:last-child):after {
+    content: "|";
+    width: 1px;
+    margin-left: 7px;
+    margin-right: 3px;
+    position: relative;
+    top: 2px;
+    color: #767676;
+    font-size: 16px;
+}
+
+.navigation-desktop .top-nav-wrap .top-navigations .nav li a {
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .25s linear;
+    color: #767676;
+    letter-spacing: .01em;
+}
+a {
+    font-family: ProximaRegular;
+    font-weight: 400;
+    letter-spacing: .01em;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: underline;
+    color: #014d83;
+}
+.navigation-desktop .main-navigation {
+    max-width: 1600px;
+    margin: auto;
+    padding: 10px 15px 0 50px!important;
+    line-height: 30px;
+}
+
+.justify-content-between {
+    -ms-flex-pack: justify!important;
+    justify-content: space-between!important;
+}
+
+.d-flex {
+    display: -ms-flexbox!important;
+    display: flex!important;
+}
+
+.navigation-desktop .main-navigation a {
+    vertical-align: middle;
+    font-family: ProximaSemiBold;
+    line-height: 30px;
+}
+
+.navigation-desktop .main-navigation .bsc-logo {
+    text-indent: -9999px;
+    color: transparent;
+    font-size: 8px;
+    width: 148px;
+    height: 47px;
+    background: url(https://blueshieldca.com/bsca/bsc/wcm/connect/provider/3570aff7-17aa-42f6-a561-00d310d9fd22/bsc-logo-lg.png?MOD=AJPERES) no-repeat 0;
+    background-size: contain;
+    display: block;
+}
+
+.navigation-desktop .main-navigation .nav {
+    margin-left: -1px;
+}
+
+.navigation-desktop .main-navigation .nav-item {
+    cursor: pointer;
+    padding-bottom: 11px;
+    background-position: 50% 125%;
+}
+
+.navigation-desktop .main-navigation a.toplinks {
+    margin-right: 5px;
+}
+.nav-link {
+    color: #25282a;
+}
+dl, ol, ul {
+    margin-top: 0;
+}
+
+
+.provider-global-nav-global-nav {
+	height: 30px;
+	width: 1440px;
+}
+.login-register-con {
+	height: 14px;
+	width: auto;
+	color: #0A0A0A;
+	font-family: "Proxima Nova Regular";
+	font-size: 12px;
+	line-height: 14px;
+   
+    float: right;
+}
+.top-divide {
+	height: 2px;
+	width: auto;
+	background-color: #E9E9E9;
+}
+
+.bottom-divide {
+	height: 2px;
+	width: auto;
+    background-color: #E9E9E9;
+    margin-top: 10px;
+}
+
+
+.logo-primary {
+	height: 47px;
+	width: 125px;
+}
+ .main-navigation {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #fff
+}
+/* .bsc-logo {
+    text-indent: -9999px;
+    color: transparent;
+    font-size: 8px;
+    width: 125px;
+    height: 47px;
+    background: url(https://blueshieldca.com/bsca/bsc/wcm/connect/provider/3570aff7-17aa-42f6-a561-00d310d9fd22/bsc-logo-lg.png?MOD=AJPERES) no-repeat 0;
+    background-size: contain;
+    padding-right: 20px;
+    margin-right: 10px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 10px;
+} */
+.logo-cap {
+    font-family: Century Gothic,ProximaRegular;
+    font-size: 20px;
+    color: #767676;
+    position: relative;
+    text-decoration: none;
+    width: 717px;
+    top: 0;
+    text-align: left;
+    margin-top: 10px;
+}
+.nav-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    font-family: ProximaSemiBold;
+}
+
+.Profile {
+    margin-left:90px;
+}
+
+.profilestyl {
+    padding: 6px 7px; 
+    border: 1px solid #0071bc; 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px;
+}
+.profile-text {
+    font-family: ProximaRegular; 
+    font-weight: 400; 
+    color: #0071bc; 
+    font-size: 18px;
+     border-radius: 50%; 
+     width: 35px; 
+     height: 35px; 
+     text-align: center; 
+     padding-top: 8px;
+}
+
+.btn {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    
+}
