@@ -1,4 +1,5 @@
-import headersStatus from './../assets/headersStatus.json'
+import headersStatus from '../assets/headersStatus.json'
+import headersJson from '../assets/headers.json'
 import { securityService } from "../_services"
 
 export function authHeader() {
@@ -8,13 +9,16 @@ export function authHeader() {
         return { 
             'Authorization': 'Basic ' + user.authdata, 
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:8085',
-            "Verizon-Headers-Json": securityService.getSecuredHeaders(headersStatus) };
+            'Access-Control-Allow-Origin': 'http://localhost:8082'
+//            "Verizon-Headers-Json": securityService.getSecuredHeaders(headersJson)
+          //  "Verizon-Headers-Json": securityService.getSecuredHeaders(headersStatus)
+           };
     } else {
         return {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:8085',
-            "Verizon-Headers-Json": securityService.getSecuredHeaders(headersStatus) 
+            'Access-Control-Allow-Origin': 'http://localhost:8082'
+//            "Verizon-Headers-Json": securityService.getSecuredHeaders(headersJson)
+            //"Verizon-Headers-Json": securityService.getSecuredHeaders(headersStatus) 
         };
     }
 }
