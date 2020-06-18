@@ -5,7 +5,7 @@
                 <span> <span>
               <b-form-checkbox
                 id="checkboxes-21"
-               
+                 @change="selectAllInbounds"
                 v-model="formSideBar.gallRules"
               >Select All</b-form-checkbox>
             </span></span>
@@ -24,7 +24,7 @@
       :per-page="pageSize"
       :current-page="currentPage"
       :show-empty="true"
-      ref="selectableTable"
+      ref="svib"
       selectable
       :select-mode="selectMode"
       :fields="fields"
@@ -34,8 +34,9 @@
       <template v-slot:cell(selected)="{ rowSelected }">
         <template v-if="rowSelected">
            <div style="margin-top:10px;">
+             SV
                   <b-form-checkbox
-                   
+                    
                     v-model="rowSelected"
                   ></b-form-checkbox>
          </div>
@@ -111,9 +112,10 @@ export default {
         { label: "Sel", key: "selected" },
         { label: "        New Ignored", key: "rule_uri" }
       ],
-      items: [
+      items:[
+          
         ],
-      selectMode: "single",
+      selectMode: "multi",
       selected: [],
 
       headers: [],
@@ -150,8 +152,7 @@ export default {
             return;
         }
         this.svcol = response.data.content;
-        console.log("sv ---got server data");
-        console.log(response);
+        
 
         this.svcol.map((o, i) => {
           o["generalHeaders"] = o["requestHeaders"];
@@ -169,14 +170,26 @@ export default {
           }
         });
 
-        console.log("svmod data-----");
-        console.log(this.svcol);
+       
         this.items = this.svcol;
-        console.log("svmod data ,,,");
+       
       })
       .catch(error => console.log(error));
   },
   methods: {
+    selectAllInbounds(){
+     
+      if(this.formSideBar.gallRules === false){
+          this.$refs.svib.clearSelected();
+           this.$refs.svib.selectAllRows();
+           this.formSideBar.gallRules = true;
+     
+      
+      }
+    
+      
+
+    },
     onRowSelected(items) {
       this.selected = items;
 
