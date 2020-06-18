@@ -1,28 +1,36 @@
 {
     "content": [
         {
-            "id": "AD123",
-            "requestUrl": "https://www.verizon.com/order/status",
-            "requestHeaders": [{
-                "key": "accept",
-                "value": "*/*",
-                "selected": false
-            },{
-                "key": " userAgent",
-                "value": "Mozilla/5.0 (Macintosh; Intel Mac OS)",
-                "selected": false
-            }],
-            "xmlPayload": "<Customers>\n\t<Customer>\n\t\t<Number>1</Number>\n\tzzdfddddddddgfgfnhhhhtyu55655555t8io\t<FirstName>Fred</FirstName>\n\t\t<LastName>Landis</LastName>\n\t\t<Address>\n\t\t\t<Street>Oakstreet</Street>\n\t\t\t<City>Boston</City>\n\t\t\t<ZIP>23320</ZIP>\n\t\t\t<State>MA</State>\n\t\t</Address>\n\t</Customer>\n\t<Customer>\n\t\t<Number>2</Number>\n\t\t<FirstName>Michelle</FirstName>\n\t\t<LastName>Butler</LastName>\n\t\t<Address>\n\t\t\t<Street>First Avenue</Street>\n\t\t\t<City>San-Francisco</City>\n\t\t\t<ZIP>44324</ZIP>\n\t\t\t<State>CA</State>\n\t\t</Address>\n\t</Customer>\n\t<Customer>\n\t\t<Number>3</Number>\n\t\t<FirstName>Ted</FirstName>\n\t\t<LastName>Little</LastName>\n\t\t<Address>\n\t\t\t<Street>Long Way</Street>\n\t\t\t<City>Los-Angeles</City>\n\t\t\t<ZIP>34424</ZIP>\n\t\t\t<State>CA</State>\n\t\t</Address>\n\t</Customer>\n</Customers>",
+            "requestUrl": "/xmlUri/",
+            "requestHeaders": {
+                "accept": "*/*",
+                "user-agent": "PostmanRuntime/7.25.0",
+                "host": "localhost:9005",
+                "timeout-access": "<function1>",
+                "postman-token": "f4e78cef-4362-4511-9007-9f775c2a1a05",
+                "cookie": "ECOMM_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCIsIlJFRkVSRVJfVVJMIjoiL3Byb3NwZWN0L3RlYWxlYWZUYXJnZXQiLCJjc3BOb25jZSI6IjNhNzc4NTg1MzM2ZDViYzJlOTc3MWY3MDcxYmRkMWI0ZjMzNThlN2I4MWUzMzk0MWUwYTJiMjg4ODE1ZjU1MzQiLCJwbGF5U2Vzc2lvbiI6IlBPVC1ELWIwN2Q1MzBiLTU5NDEtNDVmNy04YjhmLWI5YjdhMWMxYzQ5YXtzNH0iLCJDb3JyZWxhdGlvbklkIjoiT05FRElHSVRBTC0xMDZhYjkxNy1mNGFjLTQyODEtODM5ZS1kMTVjYzA5OTQyNmQtVC0xNTg4NjQ4OTYxNjEwIn0sIm5iZiI6MTU4ODY0ODk2MSwiaWF0IjoxNTg4NjQ4OTYxfQ.jJhfEty9jzNrVtZXMU5yc2JKNQA_Y2Yei1a9QK-UoC4; billingId=Sanjeev; GlobalSessionID2=sfasdfasdf65765676fsadfas7f678sdf",
+                "x-origin-path": "/xmlUri/",
+                "connection": "keep-alive",
+                "accept-encoding": "gzip, deflate, br",
+                "x-forwarded-for": "10.20.216.49"
+            },
+            "xmlPayload": "<Customers>\n\t<Customer>\n\t\t<Number>1</Number>\n\t\t<FirstName>Fred</FirstName>\n\t\t<LastName>Landis</LastName>\n\t\t<Address>\n\t\t\t<Street>Oakstreet</Street>\n\t\t\t<City>Boston</City>\n\t\t\t<ZIP>23320</ZIP>\n\t\t\t<State>MA</State>\n\t\t</Address>\n\t</Customer>\n\t<Customer>\n\t\t<Number>2</Number>\n\t\t<FirstName>Michelle</FirstName>\n\t\t<LastName>Butler</LastName>\n\t\t<Address>\n\t\t\t<Street>First Avenue</Street>\n\t\t\t<City>San-Francisco</City>\n\t\t\t<ZIP>44324</ZIP>\n\t\t\t<State>CA</State>\n\t\t</Address>\n\t</Customer>\n\t<Customer>\n\t\t<Number>3</Number>\n\t\t<FirstName>Ted</FirstName>\n\t\t<LastName>Little</LastName>\n\t\t<Address>\n\t\t\t<Street>Long Way</Street>\n\t\t\t<City>Los-Angeles</City>\n\t\t\t<ZIP>34424</ZIP>\n\t\t\t<State>CA</State>\n\t\t</Address>\n\t</Customer>\n</Customers>",
             "payLoad": ""
         },
         {
-            "id": "AD456",
             "requestUrl": "/formUri1/",
-            "requestHeaders": [{
-                "key": "auser-agentccept",
-                "value": "PostmanRuntime/7.25.0",
-                "selected": false
-            }],
+            "requestHeaders": {
+                "accept": "*/*",
+                "user-agent": "PostmanRuntime/7.25.0",
+                "host": "localhost:9005",
+                "timeout-access": "<function1>",
+                "cookie": "ECOMM_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCIsIlJFRkVSRVJfVVJMIjoiL3Byb3NwZWN0L3RlYWxlYWZUYXJnZXQiLCJjc3BOb25jZSI6IjNhNzc4NTg1MzM2ZDViYzJlOTc3MWY3MDcxYmRkMWI0ZjMzNThlN2I4MWUzMzk0MWUwYTJiMjg4ODE1ZjU1MzQiLCJwbGF5U2Vzc2lvbiI6IlBPVC1ELWIwN2Q1MzBiLTU5NDEtNDVmNy04YjhmLWI5YjdhMWMxYzQ5YXtzNH0iLCJDb3JyZWxhdGlvbklkIjoiT05FRElHSVRBTC0xMDZhYjkxNy1mNGFjLTQyODEtODM5ZS1kMTVjYzA5OTQyNmQtVC0xNTg4NjQ4OTYxNjEwIn0sIm5iZiI6MTU4ODY0ODk2MSwiaWF0IjoxNTg4NjQ4OTYxfQ.jJhfEty9jzNrVtZXMU5yc2JKNQA_Y2Yei1a9QK-UoC4; billingId=Sanjeev; GlobalSessionID2=sfasdfasdf65765676fsadfas7f678sdf",
+                "postman-token": "8c8acaa6-5a71-4836-982e-4342384dc260",
+                "x-origin-path": "/formUri1/",
+                "connection": "keep-alive",
+                "accept-encoding": "gzip, deflate, br",
+                "x-forwarded-for": "10.20.216.49"
+            },
             "formData": {
                 "formfield1": "value1",
                 "formfield2": "value2",
@@ -31,13 +39,20 @@
             "payLoad": ""
         },
         {
-            "id": "AD789",
             "requestUrl": "https://www.verizon.com/jsonUri1/",
-            "requestHeaders": [{
-                "key": "timeout-access",
-                "value": "<function1>",
-                "selected": true
-            }],
+            "requestHeaders": {
+                "accept": "*/*",
+                "user-agent": "PostmanRuntime/7.25.0",
+                "host": "localhost:9005",
+                "timeout-access": "<function1>",
+                "cookie": "ECOMM_SESSION=eyJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCIsIlJFRkVSRVJfVVJMIjoiL3Byb3NwZWN0L3RlYWxlYWZUYXJnZXQiLCJjc3BOb25jZSI6IjNhNzc4NTg1MzM2ZDViYzJlOTc3MWY3MDcxYmRkMWI0ZjMzNThlN2I4MWUzMzk0MWUwYTJiMjg4ODE1ZjU1MzQiLCJwbGF5U2Vzc2lvbiI6IlBPVC1ELWIwN2Q1MzBiLTU5NDEtNDVmNy04YjhmLWI5YjdhMWMxYzQ5YXtzNH0iLCJDb3JyZWxhdGlvbklkIjoiT05FRElHSVRBTC0xMDZhYjkxNy1mNGFjLTQyODEtODM5ZS1kMTVjYzA5OTQyNmQtVC0xNTg4NjQ4OTYxNjEwIn0sIm5iZiI6MTU4ODY0ODk2MSwiaWF0IjoxNTg4NjQ4OTYxfQ.jJhfEty9jzNrVtZXMU5yc2JKNQA_Y2Yei1a9QK-UoC4; GlobalSessionID=sfasdfasdf65765676fsadfas7f678sdf; billingId=Sanjeev",
+                "postman-token": "0d40cbae-a0b2-4f9b-83a2-317cdd2f6ce3",
+                "x-origin-path": "/jsonUri1/",
+                "connection": "keep-alive",
+                "x-forwarded-for": "10.20.216.50",
+                "x-custom-hdr": "Custom Header 1",
+                "accept-encoding": "gzip, deflate, br"
+            },
             "jsonPayload": {
                 "requestId": "b5d574f519ab49f180655c0eb0100fde",
                 "context": {
