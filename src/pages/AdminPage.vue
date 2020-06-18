@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="alert alert-info">Admin Page</div>
+    <div class="alert alert-info">Parser Settings Page</div>
     <form v-on:submit.prevent>
       <div class="section-wrapper">
         <div v-if="!isError" class="message">{{parserResponseStatus}}</div>
