@@ -13,7 +13,7 @@
               >Select All</b-form-checkbox>
             </span>
             <div id="extract-action-1" class="extract-start" style="padding-bottom:10px;">
-              <b-button variant="info" size="sm" class="float-left" @click="showModal">Ignore</b-button>
+              <b-button variant="" size="sm" class="float-left" @click="showModal">Ignore</b-button>
               <b-button
                 variant="success"
                 style="margin-left:15px;"
