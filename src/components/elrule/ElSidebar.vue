@@ -5,7 +5,7 @@
                 <span> <span>
               <b-form-checkbox
                 id="checkboxes-21"
-                 @change="selectAllInbounds"
+                 @change="onNewMessages"
                 v-model="formSideBar.gallRules"
               >Select All</b-form-checkbox>
             </span></span>
@@ -177,13 +177,15 @@ export default {
       .catch(error => console.log(error));
   },
   methods: {
-    selectAllInbounds(){
+   onNewMessages(){
      
       if(this.formSideBar.gallRules === false){
           this.$refs.svib.clearSelected();
            this.$refs.svib.selectAllRows();
            this.formSideBar.gallRules = true;
-     
+      }else{
+          this.$refs.svib.clearSelected();
+           this.formSideBar.gallRules = false;
       
       }
     
