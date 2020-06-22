@@ -15,24 +15,24 @@
            </div>   
            -->
         
-        <span class="tb-container">
-          <span>
-            <b-form-checkbox
-              id="checkboxes-21"
-              @change="onNewMessages"
-              v-model="formSideBar.gallRules"
-            ></b-form-checkbox>
-          </span>
-          <span class="tb-box-2">Select</span>
+        <span class="tb-container svactive-not-select">
+            <span>
+              <b-form-checkbox
+                id="checkboxes-21"
+                @change="onNewMessages"
+                v-model="formSideBar.gallRules"
+              ></b-form-checkbox>
+            </span>
+            <span class="tb-box-2">Select</span>
         </span>
         <div class="a-container a-offset">
           
            
           
-          <span class="sv-rule-selected">
-            <a href="#">New</a>
+          <span class="sv-rule-selected svactive-tree ">
+            <a  href="#">New</a>
           </span>
-          <span style="padding-left: 10px;">
+          <span class="svactive-not-tree" style="padding-left: 10px;">
             <a href="#">Ignored</a>
           </span>
           
@@ -83,10 +83,10 @@
         <div class="s-container">
           <div class="s-box2">
             <div>
-              <span class="space-left text-muted">{{row.item.created_last}}</span>
+              <span   class="space-left text-muted rule-secondary ">{{row.item.created_last}}</span>
             </div>
             <div>
-              <span class="space-left text-rule">{{row.item.rule_uri}}</span>
+              <span    class="space-left text-rule rule-primary">{{row.item.rule_uri}}</span>
             </div>
           </div>
         </div>
@@ -287,7 +287,7 @@ a {
 }
 
 .a-offset {
-  padding-left: 115px;
+  padding-left: 105px;
 }
 
 tr td span .custom-control {
@@ -318,7 +318,7 @@ td:nth-child(1) {
 .sv-rule-selected{
   /*color: #0d2a35 !important; */
     color: #575f65 !important;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .sv-rule-selected a {
 
@@ -334,9 +334,53 @@ td:nth-child(1) {
     padding-top:0.5rem;
      padding-bottom: 0.5rem;
      padding-right: 0.5rem;
-    
-    background-color: #ee4400; /* add background-color to active links */
 
+     text-decoration-line: none;
+     text-decoration-style: solid;
+
+     background-color:rgba(48,197,189, 0.6) ;
+
+}
+
+
+.a-container .svactive-tree {
+
+    color: #ffffff !important;
+    text-decoration: none;
+     padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    padding-top:0.5rem;
+     padding-bottom: 0.5rem;
+     
+   /*
+   48 197 189
+    
+     padding-right: 0.5rem; */
+    
+    background-color:rgba(48,197,189, 1.0) ;/* add background-color to active links */
+
+}
+
+
+.a-container .svactive-not-tree {
+
+    
+    text-decoration: none;
+     padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    padding-top:0.5rem;
+     padding-bottom: 0.5rem;
+     
+   /*
+   
+    
+     padding-right: 0.5rem; */
+    
+   
+
+}
+.svactive-not-select{
+  padding-top:0.5rem;
 }
 
 .text-muted{
@@ -346,6 +390,14 @@ td:nth-child(1) {
  .text-rule{
    color: #575f65 !important;
   
+ }
+ .rule-secondary{
+    font-size: 14px;
+
+ }
+ .rule-primary{
+   font-size: 16px;
+
  }
 /*navbar .. */
 </style>
