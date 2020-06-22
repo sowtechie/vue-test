@@ -13,7 +13,11 @@
           <b-form inline>
     <label class="sr-only" for="inline-form-input-name">Search</label>
     <b-input
-      id="inline-form-input-name"
+     
+      v-model="filter"
+     type="search"
+              id="filterInput"
+           
       class="mb-2 mr-sm-2 mb-sm-0"
       placeholder="Search"
     ></b-input>
@@ -35,8 +39,12 @@
     <b-row class="mb-2">
       <b-col class="col-3 um-sidebar-right">
        
-        
-        <ElSideBar v-on:svblank="blankOutPicker"  v-on:svrefresh="svrefreshPicker"></ElSideBar>
+  
+        <ElSideBar v-bind:filter="filter"  v-on:svblank="blankOutPicker"  v-on:svrefresh="svrefreshPicker"></ElSideBar>
+    
+        <!--
+        <SideBar v-on:svblank="blankOutPicker"  v-on:svrefresh="svrefreshPicker"></SideBar>
+-->
         
         
       </b-col>
@@ -63,12 +71,14 @@ import "./elastic.css";
 
 import ElSideBar from '../../components/elrule/ElSidebar';
 import ElPicker from '../../components/elrule/ElPicker';
+import SideBar from '../../components/elrule/Sidebar';
 
 
 export default {
-  components: { ElSideBar, ElPicker},
+  components: { ElSideBar, ElPicker, SideBar},
   data() {
     return {
+      filter:null,
       showPicker : false,
       pointerRule:"https://www.verizon.com/home/phone/",
       pointerGerenal:{
