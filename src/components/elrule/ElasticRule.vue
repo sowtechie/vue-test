@@ -71,11 +71,11 @@ import "./elastic.css";
 
 import ElSideBar from '../../components/elrule/ElSidebar';
 import ElPicker from '../../components/elrule/ElPicker';
-import SideBar from '../../components/elrule/Sidebar';
+
 
 
 export default {
-  components: { ElSideBar, ElPicker, SideBar},
+  components: { ElSideBar, ElPicker},
   data() {
     return {
       filter:null,
