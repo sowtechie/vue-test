@@ -158,7 +158,16 @@ export default {
           view["rule_uri"] = view["requestUrl"];
 
           view["is_selected"] = false;
+
+          
           view["created_last"] = "08/1 10:00 AM";
+
+           if (
+            view["createdDate"] && (  view["createdDate"].length > 10)
+           
+          ) {
+            view["created_last"] = this.$moment.utc(view.createdDate).format('MM/DD/YYYY hh:mm A');
+          }
 
           if (!view["responseHeaders"]) {
             view["responseHeaders"] = {};
@@ -191,6 +200,8 @@ export default {
           ) {
             view["responseHeaders"] = {};
           }
+
+       
         });
 
 
