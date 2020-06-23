@@ -57,6 +57,41 @@
         </b-col>
       </b-row>
 
+       <!--cookies-->
+
+      <b-row class="block-start">
+        <b-col class="col-1"></b-col>
+        <b-col class="col-8">
+          <b-form-group id="input-group-6">
+            <b-row>
+              <div class="t-container">
+                <span>
+                  <b-form-checkbox
+                    @change="selectAllRh"
+                    v-model="form.gresponseAll"
+                  >Coookies In Headers</b-form-checkbox>
+                </span>
+              </div>
+            </b-row>
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col class="col-2"></b-col>
+
+        <b-col class="col-8">
+          <b-form-group id="input-group-8">
+            <b-form-checkbox-group v-model="form.cookieGroupchecked" id="checkboxes-8">
+              <b-row v-for="coh in Object.entries(cookieHeaders)">
+                <b-form-checkbox :value="coh[0]">{{coh[0]}} : {{coh[1]}}</b-form-checkbox>
+              </b-row>
+            </b-form-checkbox-group>
+          </b-form-group>
+        </b-col>
+      </b-row>
+
+      <!--cookies.. --->
+
       <!--response-->
 
       <b-row class="block-start">
@@ -257,7 +292,7 @@ import friendlyUrlAndGroupNames from "../../assets/friendlyUrlAndGroupNames.json
 
 export default {
   components: { Dynafield },
-  props: ["generalHeaders", "responseHeaders", "selectedRuleUri"],
+  props: ["generalHeaders", "responseHeaders", "cookieHeaders", "selectedRuleUri"],
   data() {
     return {
       urlGroupObject: friendlyUrlAndGroupNames,
@@ -275,6 +310,7 @@ export default {
       pipeResponse: {},
       pipeGeneral: {},
 
+      pipeCookies: {},
       //modal..
 
       rhall: false,
@@ -305,7 +341,7 @@ export default {
         "x-origin-path": false,
         connection: false,
         "x-forwarded-for": false,
-
+        cookieGroupchecked:[],
         responseGroupchecked: []
       },
       nameAssetsForm: {},
@@ -381,11 +417,19 @@ export default {
         let n = keys[i];
         this.pipeResponse[n] = this.responseHeaders[n];
       }
+
       keys = this.form.checked;
       for (let i = 0; i < keys.length; i++) {
         let n = keys[i];
         this.pipeGeneral[n] = this.generalHeaders[n];
       }
+
+      keys = this.form.cookieGroupchecked;
+      for (let i = 0; i < keys.length; i++) {
+        let n = keys[i];
+        this.pipeCookies[n] = this.cookieGroupchecked[n];
+      }
+
     },
     dynaResponseRules: function() {
       let rules = [];
@@ -426,6 +470,30 @@ export default {
           label: key,
           defaultValue: "",
           labelFor: "input-ge" + i,
+          // placeholder: "Enter value ",
+          description: "Enter  " + key
+        };
+        this.form[key] = "";
+        rules.push(item);
+      }
+      let o = rules;
+
+      return rules;
+    },
+    dynaCoookieRules: function() {
+      let rules = [];
+      let hdr1 = this.pipeCookies;
+
+      let hdr = Object.keys(hdr1);
+
+      for (let i = 0; i < hdr.length; i++) {
+        let key = hdr[i];
+        let v = hdr1[key];
+        let item = {
+          id: "input-group-co-" + i,
+          label: key,
+          defaultValue: "",
+          labelFor: "input-co" + i,
           // placeholder: "Enter value ",
           description: "Enter  " + key
         };

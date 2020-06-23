@@ -133,6 +133,7 @@ export default {
     axios
       .get(serverURL)
       .then(response => {
+        const emptyCookie = {};
         if (!(response && response.data && response.data.content)) {
           console.log(
             "Service error - Please contact Backend admin for Services error or Retry later"
@@ -155,11 +156,35 @@ export default {
         this.svcol.map((view, i) => {
           view["generalHeaders"] = view["requestHeaders"];
           view["rule_uri"] = view["requestUrl"];
+
           view["is_selected"] = false;
           view["created_last"] = "08/1 10:00 AM";
+
           if (!view["responseHeaders"]) {
             view["responseHeaders"] = {};
           }
+          
+         
+          if(!view["cookies"]){
+              view["cookies"] = emptyCookie;
+          }else{
+
+            let hdr =  view["cookies"];
+            if( hdr === ""){
+               view["cookies"] = emptyCookie;
+            }
+            
+          }
+           if (
+            view["cookies"] &&
+            Object.keys(view["cookies"]).length < 1
+          ) {
+            view["cookies"] = emptyCookie;
+          }
+
+           view["cookieHeaders"] =  view["cookies"] ;
+           delete  view["cookies"] ;
+
           if (
             view["responseHeaders"] &&
             Object.keys(view["responseHeaders"]).length < 1
@@ -168,7 +193,9 @@ export default {
           }
         });
 
+
         this.items = this.svcol;
+       
       })
       .catch(error => console.log(error));
   },
@@ -216,6 +243,7 @@ export default {
           rule: this.selected[0].rule_uri,
           created_last: this.selected[0].created_last,
           responseHeaders: this.selected[0].responseHeaders,
+          cookieHeaders:this.selected[0].cookieHeaders,
           generalHeaders: this.selected[0].generalHeaders
         };
         return;
@@ -224,10 +252,11 @@ export default {
           rule: row.rule_uri,
           created_last: row.created_last,
           responseHeaders: row.responseHeaders,
+          cookieHeaders: row.cookieHeaders,
           generalHeaders: row.generalHeaders
         };
       }
-
+     
       this.svpointer = param;
       this.$emit("svrefresh", param);
     }

@@ -46,6 +46,7 @@
                   v-on:created="onTagCreated"
                   v-bind:generalHeaders="pointerGerenal"
                   v-bind:responseHeaders="pointerResponse"
+                  v-bind:cookieHeaders="pointerCookie"
                   v-bind:selectedRuleUri="pointerRule"
                 ></ElPicker>
               </b-col>
@@ -78,6 +79,13 @@ export default {
         remoteAddress: "https://www.verizon.com/home/phone/",
         referralPolicy: "no referral"
       },
+
+      pointerCookie:{
+        "ECOMM_SESSION": "eyJhbGciOiJIUzI1NiJ9",
+        "billingId": "SanjeevV",
+        "GlobalSessionID2": "ImFwcE5hbWUiOiJlY29tbV9zdG9yZV9wcm9zcGVjdCI"
+      },
+      
       pointerResponse: {
         accept: "*/*",
         "user-agent": "PostmanRuntime/7.25.0",
@@ -121,6 +129,7 @@ export default {
       let ruleId = p.rule;
       this.pointerGerenal = p.generalHeaders;
       this.pointerResponse = p.responseHeaders;
+      this.pointerCookie = p.cookieHeaders;
       this.pointerRule = p.rule;
     }
   }
