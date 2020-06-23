@@ -2,44 +2,24 @@
   <div>
     <b-row>
       <div class="sideh-container">
-        <!--
-         <div class="navbar-collapse collapse" id="navbarCustom">
-              <ul class="navbar-nav">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="#">Active</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">Link</a>
-                  </li>
-              </ul>
-           </div>   
-           -->
-        
         <span class="tb-container svactive-not-select">
-            <span>
-              <b-form-checkbox
-                id="checkboxes-21"
-                @change="onNewMessages"
-                v-model="formSideBar.gallRules"
-              ></b-form-checkbox>
-            </span>
-            <span class="tb-box-2">Select</span>
+          <span>
+            <b-form-checkbox
+              id="checkboxes-21"
+              @change="onNewMessages"
+              v-model="formSideBar.gallRules"
+            ></b-form-checkbox>
+          </span>
+          <span class="tb-box-2">Select</span>
         </span>
         <div class="a-container a-offset">
-          
-           
-          
-          <span class="sv-rule-selected svactive-tree ">
-            <a  href="#">New</a>
+          <span class="sv-rule-selected svactive-tree">
+            <a href="#">New</a>
           </span>
           <span class="svactive-not-tree" style="padding-left: 10px;">
             <a href="#">Ignored</a>
           </span>
-          
-
         </div>
-        
-
       </div>
     </b-row>
     <b-table
@@ -61,7 +41,6 @@
       <template v-slot:cell(selected)="{ rowSelected }">
         <template v-if="rowSelected">
           <div style="margin-top:10px;">
-            
             <b-form-checkbox v-model="rowSelected"></b-form-checkbox>
           </div>
           <!--
@@ -83,10 +62,10 @@
         <div class="s-container">
           <div class="s-box2">
             <div>
-              <span   class="space-left text-muted rule-secondary ">{{row.item.created_last}}</span>
+              <span class="space-left text-muted rule-secondary">{{row.item.created_last}}</span>
             </div>
             <div>
-              <span    class="space-left text-rule rule-primary">{{row.item.rule_uri}}</span>
+              <span class="space-left text-rule rule-primary">{{row.item.rule_uri}}</span>
             </div>
           </div>
         </div>
@@ -112,7 +91,7 @@
 import axios from "axios";
 import config from "config";
 export default {
-  props:['filter'],
+  props: ["filter"],
   data() {
     return {
       formSideBar: {
@@ -120,7 +99,7 @@ export default {
       },
       //api
       //filter: 'xml',
-        filterOn: [],
+      filterOn: [],
       svcol: null,
       //api..
       svpointer: null,
@@ -150,7 +129,7 @@ export default {
   created: function() {
     let serverURL = `${config.headerStatusUrl}/getAllParameters`;
     // let serverURL = 'http://localhost:8080/svstatus'
-  
+
     axios
       .get(serverURL)
       .then(response => {
@@ -172,7 +151,7 @@ export default {
           return;
         }
         this.svcol = response.data.content;
-       
+
         this.svcol.map((view, i) => {
           view["generalHeaders"] = view["requestHeaders"];
           view["rule_uri"] = view["requestUrl"];
@@ -189,15 +168,21 @@ export default {
           }
         });
 
-       
         this.items = this.svcol;
-       
       })
       .catch(error => console.log(error));
   },
   methods: {
+    isPrevious(ar, item) {
+      let prev = false;
+      for (let k = 0; k < ar.length; k++) {
+        if (ar[k].rule_uri === item.rule_uri) {
+          prev = true;
+        }
+      }
+      return prev;
+    },
     onNewMessages() {
-     
       if (this.formSideBar.gallRules === false) {
         this.$refs.svib.clearSelected();
         this.$refs.svib.selectAllRows();
@@ -206,18 +191,43 @@ export default {
         this.$refs.svib.clearSelected();
         this.formSideBar.gallRules = false;
       }
-
-
     },
+
     onRowSelected(items) {
+      if (items.length < 1) {
+        let view = { type: "no selection" };
+        this.$emit("svnocontent", view);
+        return;
+      }
+      let row = null;
+
+      for (let i = 0; i < items.length; i++) {
+        if (this.isPrevious(this.selected, items[i])) {
+        } else {
+          row = items[i];
+          break;
+        }
+      }
       this.selected = items;
 
-      let param = {
-        rule: this.selected[0].rule_uri,
-        created_last: this.selected[0].created_last,
-        responseHeaders: this.selected[0].responseHeaders,
-        generalHeaders: this.selected[0].generalHeaders
-      };
+      let param = null;
+      if (row == null) {
+        param = {
+          rule: this.selected[0].rule_uri,
+          created_last: this.selected[0].created_last,
+          responseHeaders: this.selected[0].responseHeaders,
+          generalHeaders: this.selected[0].generalHeaders
+        };
+        return;
+      } else {
+        param = {
+          rule: row.rule_uri,
+          created_last: row.created_last,
+          responseHeaders: row.responseHeaders,
+          generalHeaders: row.generalHeaders
+        };
+      }
+
       this.svpointer = param;
       this.$emit("svrefresh", param);
     }
@@ -297,9 +307,9 @@ tr td span .custom-control {
   min-height: 1.5rem;
   padding-left: 1.5rem;
 }
-.table tr:nth-child(3n+3) {  
+.table tr:nth-child(3n + 3) {
   color: #ccc;
-   background: red !important;
+  background: red !important;
 }
 td:nth-child(1) {
   color: red !important;
@@ -308,96 +318,86 @@ td:nth-child(1) {
   color: red !important;
 }
 
-.tb-container{
-   display: flex;
-    flex-direction: row;
+.tb-container {
+  display: flex;
+  flex-direction: row;
 }
-.tb-box-2{
-  padding-left: 35px;;
+.tb-box-2 {
+  padding-left: 35px;
 }
-.sv-rule-selected{
+.sv-rule-selected {
   /*color: #0d2a35 !important; */
-    color: #575f65 !important;
+  color: #575f65 !important;
   text-decoration: none;
 }
 .sv-rule-selected a {
-
-    color: #0d2a35 !important;
+  color: #0d2a35 !important;
 }
 
+.a-container a:hover,
+.a-container a:active {
+  color: #ffffff !important;
 
-.a-container a:hover, .a-container a:active {
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 0.5rem;
 
-    color: #ffffff !important;
-   
-    padding-left: 0.5rem;
-    padding-top:0.5rem;
-     padding-bottom: 0.5rem;
-     padding-right: 0.5rem;
+  text-decoration-line: none;
+  text-decoration-style: solid;
 
-     text-decoration-line: none;
-     text-decoration-style: solid;
-
-     background-color:rgba(48,197,189, 0.6) ;
-
+  background-color: rgba(48, 197, 189, 0.6);
 }
-
 
 .a-container .svactive-tree {
+  color: #ffffff !important;
+  text-decoration: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
-    color: #ffffff !important;
-    text-decoration: none;
-     padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    padding-top:0.5rem;
-     padding-bottom: 0.5rem;
-     
-   /*
+  /*
    48 197 189
     
      padding-right: 0.5rem; */
-    
-    background-color:rgba(48,197,189, 1.0) ;/* add background-color to active links */
 
+  background-color: rgba(
+    48,
+    197,
+    189,
+    1
+  ); /* add background-color to active links */
 }
 
-
 .a-container .svactive-not-tree {
+  text-decoration: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 
-    
-    text-decoration: none;
-     padding-left: 0.5rem;
-      padding-right: 0.5rem;
-    padding-top:0.5rem;
-     padding-bottom: 0.5rem;
-     
-   /*
+  /*
    
     
      padding-right: 0.5rem; */
-    
-   
-
 }
-.svactive-not-select{
-  padding-top:0.5rem;
+.svactive-not-select {
+  padding-top: 0.5rem;
 }
 
-.text-muted{
+.text-muted {
   color: #929ba2 !important;
 }
- 
- .text-rule{
-   color: #575f65 !important;
-  
- }
- .rule-secondary{
-    font-size: 14px;
 
- }
- .rule-primary{
-   font-size: 16px;
-
- }
+.text-rule {
+  color: #575f65 !important;
+}
+.rule-secondary {
+  font-size: 14px;
+}
+.rule-primary {
+  font-size: 16px;
+}
 /*navbar .. */
 </style>
