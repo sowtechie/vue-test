@@ -6,7 +6,7 @@ import App from './app/App';
 import {BootstrapVueIcons} from 'bootstrap-vue';
 //import axios from 'axios';
 import VueAxios from './plugins/vue-axios';
-
+import VueMoment from 'vue-moment';
 
 
 // setup fake backend
@@ -16,6 +16,7 @@ import { configureFakeBackend } from './_helpers';
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.use(VueAxios);
+Vue.use(VueMoment)
 
 //Vue.use(axios);
 
