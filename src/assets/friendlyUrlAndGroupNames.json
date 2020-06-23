@@ -1,0 +1,19 @@
+{
+    "urlName": "https://apc01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fverizon.com%2Forder&amp;data=02%7C01%7Csam.b%40infosys.com%7C513ca007323e4c1fd9d208d817234e2c%7C63ce7d592f3e42cda8ccbe764cff5eb6%7C1%7C0%7C637284787688896374&amp;sdata=4fR3iWPr5Y35203GkBiO2EIOaY8vL%2B%2BkBeTjoTcOOQs%3D&amp;reserved=0",
+    "groups": [
+        {
+            "text": "Order",
+            "value": "order"
+        },
+        {
+            "text": "Payment",
+            "value": "Payment"
+        },{
+            "text": "Billing",
+            "value": "Billing"
+        }
+
+
+
+    ]
+}

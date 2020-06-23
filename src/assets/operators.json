@@ -1,0 +1,50 @@
+[
+    {
+        "text": "Equals",
+        "value": "equals"
+    },
+    {
+        "text": "Not Equals",
+        "value": "notEquals"
+    },
+    {
+        "text": "Greater Than",
+        "value": "greater"
+    },
+    {
+        "text": "Less Than",
+        "value": "lessthan"
+    },
+    {
+        "text": "Like",
+        "value": "like"
+    },
+    {
+        "text": "SizeOf",
+        "value": "sizeOf"
+    },
+    {
+        "text": "True",
+        "value": "true"
+    },
+    {
+        "text": "Present",
+        "value": "present"
+    },
+    {
+        "text": "False",
+        "value": "false"
+    },
+    {
+        "text": "BlackListed",
+        "value": "blackListed"
+    },
+    {
+        "text": "Cached",
+        "value": "cached"
+    },
+    {
+        "text": "RepeatsPerMin",
+        "value": "repeatsPerMin"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "value": "allow",
+        "text": "Allow"
+    },
+    {
+        "value": "stepUp",
+        "text": "StepUp"
+    },
+    {
+        "value": "block",
+        "text": "Block"
+    },
+    {
+        "value": "saveToCache",
+        "text": "Save to Cache"
+    },
+    {
+        "value": "cascade",
+        "text": "Cascade to Next Rule"
+    },
+    {
+        "value": "startSMonitoring",
+        "text": "Start Monitoring"
+    },
+    {
+        "value": "StopMonitoring",
+        "text": "Stop Monitoring"
+    }
+]

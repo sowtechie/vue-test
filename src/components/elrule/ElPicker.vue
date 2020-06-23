@@ -13,7 +13,7 @@
               >Select All</b-form-checkbox>
             </span>
             <div id="extract-action-1" class="extract-start" style="padding-bottom:10px;">
-              <b-button variant="" size="sm" class="float-left" @click="showModal">Ignore</b-button>
+              <b-button variant size="sm" class="float-left" @click="showModal">Ignore</b-button>
               <b-button
                 variant="success"
                 style="margin-left:15px;"
@@ -41,7 +41,6 @@
                     v-model="form.gall"
                   >Request Headers</b-form-checkbox>
                 </span>
-
               </div>
             </b-row>
           </b-form-group>
@@ -72,7 +71,6 @@
                     v-model="form.gresponseAll"
                   >Response Headers</b-form-checkbox>
                 </span>
-
               </div>
             </b-row>
           </b-form-group>
@@ -98,109 +96,152 @@
     <!--svc -->
     <!--modal-->
 
-  <b-modal id="modal-prevent-closing" ref="push-workflow" size="lg" hide-header>
-      <div style="display: flex; flex-direction: row">
-        <div style="text-decoration: underline" @click="hideRuleSets">
-          <b>Name Assets</b>
-        </div>
-        <!-- <div style="padding-left: 12px; text-decoration: underline" @click="showRuleSets">Set Rules</div> -->
-      </div>
-
-        <div class="my-2 d-block push-hdr">
-          <div>
-            <b>{{selectedRuleUri}}</b>
-          </div>
-        </div>
-      <hr>
-      <div>
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label for="input-invalid">Friendly Url:</label>
-          </b-col>
-          <div  style = "width: 50%">
-            <b-form-input id="input-invalid" placeholder="Friendly Url"></b-form-input>
-          </div>
-        </b-row>
-        <b-row class="my-1">
-          <b-col sm="3">
-            <label for="input-invalid">Group Names:</label>
-          </b-col>
-          <div style = "width: 50%">
-            <b-form-input id="input-invalid" placeholder="Group Name"></b-form-input>
-          </div>
-        </b-row>
-      </div>
-
-      <div v-if="!displayRuleSets">
-        <b-container fluid>
-          <form ref="svpushform" @submit.stop.prevent="handleSubmit">
-            <div class="t-container">
-              <!-- from popup -->
-              <div>General Headers</div>
+    <b-modal id="modal-prevent-closing" ref="push-workflow" size="lg" hide-header>
+      <b-container fluid>
+        <div v-if="!displayRuleSets">
+          <div style="display: flex; flex-direction: row">
+            <div style="text-decoration: underline" @click="showRuleSets(false)">
+              <b>Customize URL Names & Groups</b>
             </div>
-<b-row class="block-start">
-              <b-col class="col-12">
-                <b-container fluid>
-                  <div style="display: flex; flex-direction: row; align-items: center" class="my-1" v-for="dynaRule in dynaGeneralRules() " :key="type">
-                    <div class="label-class">
-                      <label :for="`type-${type}`">{{ dynaRule.label }}:</label>
-                    </div>
-                    <div style="width: 50%">
-                      <b-form-input
-                        :id="dynaRule.labelFor"
-                        v-model="form[dynaRule.label]"
-                        required
-                        :placeholder="dynaRule.placeholder"
-                      ></b-form-input>
-                    </div>
-                  </div>
-                </b-container>
-              </b-col>
-            </b-row>
-            <!--rsh-->
-            <b-row class="block-start">
-              <div class="t-container">
-                <span>Response Headers</span>
-                <div id="edgers-action-41" class="extract-start"></div>
-                <b-tooltip target="edgers-action-41" triggers="hover">
-                  Select
-                  <b>response headers</b> to push to Elastic Server!
-                </b-tooltip>
-              </div>
-            </b-row>
-            <b-row class="block-start">
-              <b-col class="col-12">
-                <b-container fluid>
-                  <div style="display: flex; flex-direction: row; align-items: center" class="my-1" v-for="dynaRule in dynaResponseRules() " :key="type">
-                    <div class="label-class">
-                      <label :for="`type-${type}`">{{ dynaRule.label }}:</label>
-                    </div>
-                    <div style="width: 50%">
-                      <b-form-input
-                        :id="dynaRule.labelFor"
-                        v-model="form[dynaRule.label]"
-                        required
-                        :placeholder="dynaRule.placeholder"
-                      ></b-form-input>
-                    </div>
-                  </div>
-                </b-container>
-              </b-col>
-            </b-row>
-          </form>
-        </b-container>
-      </div>
-      <div v-if="displayRuleSets">Show name rules</div>
-      <template v-slot:modal-footer>
-        <div
-          class="w-100"
-          style="display: flex; flex-direction: row; justify-content: space-between"
-        >
-          <div>
-            <b-button :pressed="true"  variant="secondary" size="sm" class="float-right" @click="hideModal">Cancel</b-button>
+            <!-- <div style="padding-left: 12px; text-decoration: underline" @click="showRuleSets">Set Rules</div> -->
           </div>
+
+          <div class="my-2 d-block push-hdr">
+            <div>
+              <b>{{selectedRuleUri}}</b>
+            </div>
+          </div>
+          <hr />
+          <div class="pl-4">
+            <div class="app-flex my-2">
+              <div>
+                <label class="label-class" for="input-invalid">URL Name:</label>
+              </div>
+              <div style="width: 50%">
+                <b-form-input v-model="urlGroupObject.urlName" required></b-form-input>
+              </div>
+              <div>
+                <b-icon icon="check"></b-icon>
+              </div>
+            </div>
+            <div class="app-flex">
+              <div>
+                <label class="label-class" for="input-invalid">Group:</label>
+              </div>
+              <div style="width: 50%">
+                <b-form-select v-model="urlGroupObject.group" :options="naGroups"></b-form-select>
+              </div>
+            </div>
+          </div>
+          <form ref="svpushform" @submit.stop.prevent="handleSubmit">
+            <!-- from popup -->
+            <div class="muted">General</div>
+            <div class="pl-4 my-2" v-for="dynaRule in dynaGeneralRules()">
+              <Dynafield v-bind:dynaRule="dynaRule" v-on:onUpdate="onFieldUpdated"></Dynafield>
+            </div>
+            <!--rsh-->
+            <div v-if="dynaResponseRules().length > 0">
+              <div class="muted">Response Headers</div>
+              <div class="pl-4 my-2" v-for="dynaRule in dynaResponseRules()">
+                <Dynafield
+                  class="app-flex"
+                  v-bind:dynaRule="dynaRule"
+                  v-on:onUpdate="onFieldUpdated"
+                ></Dynafield>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div v-if="displayRuleSets">
+          <div class="my-2">Rule: Capture Order Processing Time</div>
+          <hr />
+          <div class="my-1"><span class="font-bold">URL:</span> {{urlGroupObject.urlName}}</div>
+          <div class="my-1"><span class="font-bold">Group:</span> {{urlGroupObject.group}}</div>
+          <hr />
           <div>
-            <b-button  :pressed="true" variant="primary" size="sm" class="float-right" @click="okModal">Next</b-button>
+            <div class="main-condition">IF:</div>
+            <b-row
+              class="my-2"
+              style="align-items: center; padding-left: 32px"
+              v-for="(condition, index) of Object.values(nameAssetsForm)"
+            >
+              <b-col class="col-3">
+                <div class="condition-label">{{condition}}</div>
+              </b-col>
+              <b-col class="col-5">
+                <b-form-select v-model="selected" :options="rsOperators"></b-form-select>
+              </b-col>
+              <b-col class="col-3" v-if="index == (Object.keys(nameAssetsForm).length - 1)">
+                <b-form-input required></b-form-input>
+              </b-col>
+              <b-col class="col-1">
+                  <b-icon icon="x"></b-icon>
+              </b-col>
+            </b-row>
+            <div v-if="index < Object.keys(nameAssetsForm).length"><span class="font-bold">AND:</span></div>
+            <div class="main-condition">THEN:</span></div>
+            <b-row style="align-items: center; padding-left: 32px">
+              <b-col class="col-3">
+                <div class="condition-label">ACTION:</div>
+              </b-col>
+              <b-col class="col-3">
+                <b-form-select v-model="selected" :options="rsActions"></b-form-select>
+              </b-col>
+            </b-row>
+          </div>
+        </div>
+      </b-container>
+      <template v-slot:modal-footer>
+        <div class="w-100" v-if="!displayRuleSets">
+          <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div>
+              <b-button
+                :pressed="true"
+                variant="secondary"
+                size="sm"
+                class="float-right"
+                @click="hideModal"
+              >Cancel</b-button>
+            </div>
+            <div>
+              <b-button
+                :pressed="true"
+                variant="primary"
+                size="sm"
+                class="float-right"
+                @click="showRuleSets"
+              >Next</b-button>
+            </div>
+          </div>
+        </div>
+        <div class="w-100" v-if="displayRuleSets">
+          <div style="display: flex; flex-direction: row; justify-content: space-between">
+            <div>
+              <b-button
+                :pressed="true"
+                variant="secondary"
+                size="sm"
+                class="float-right"
+                @click="hideModal"
+              >Cancel</b-button>
+            </div>
+            <div class="app-flex">
+              <div style="margin-right: 6px;">
+                <b-button :pressed="true" variant="primary" size="sm" class="float-right">Validate</b-button>
+              </div>
+              <div>
+                <b-button
+                  :pressed="true"
+                  variant="primary"
+                  size="sm"
+                  class="float-right"
+                  @click="showRuleSets(false)"
+                >Back</b-button>
+              </div>
+              <div style="margin-left: 6px;">
+                <b-button :pressed="true" variant="primary" size="sm" class="float-right">Publish</b-button>
+              </div>
+            </div>
           </div>
         </div>
       </template>
@@ -209,10 +250,17 @@
 </template>
 
 <script>
+import Dynafield from "../../components/elrule/Dynafield";
+import operators from "../../assets/operators.json"; 
+import actions from "../../assets/actions.json"; 
+import friendlyUrlAndGroupNames from "../../assets/friendlyUrlAndGroupNames.json";
+
 export default {
+  components: { Dynafield },
   props: ["generalHeaders", "responseHeaders", "selectedRuleUri"],
   data() {
     return {
+      urlGroupObject: friendlyUrlAndGroupNames,
       //api
       svcol: null,
       //modal
@@ -260,7 +308,9 @@ export default {
 
         responseGroupchecked: []
       },
-
+      nameAssetsForm: {},
+      displayRuleSets: false,
+      naGroups: friendlyUrlAndGroupNames.groups,
       show: true
     };
   },
@@ -269,7 +319,18 @@ export default {
     onOrigin() {
       //sv
     },
-
+    onFieldUpdated(label, value) {
+      this.nameAssetsForm[label] = value;
+      console.log("label is", label, "val is", value);
+    },
+    showRuleSets(flag) {
+      this.displayRuleSets = flag;
+      if (flag) {
+        this.rsOperators = operators;
+        this.rsActions = actions;
+      }
+      console.log("show rule set", flag);
+    },
     checkFormValidity() {
       const valid = this.$refs.svpushform.checkValidity();
 
@@ -299,12 +360,13 @@ export default {
     showModal() {
       let keys = this.form.responseGroupchecked;
       if (keys.length < 1) {
-         console.log('sv nor esponse headers');
+        console.log("sv nor esponse headers");
       }
       keys = this.form.checked;
       if (keys.length < 1) {
         return;
       }
+      this.displayRuleSets = false;
       this.applyTransform();
       this.$refs["push-workflow"].show();
     },
@@ -578,7 +640,7 @@ footer {
     padding-bottom: 0px;
 }*/
 .modal-footer {
-  background-color: lightgray!important; }
+  background-color: lightgray !important; }
 
 .pick-action-container {
   display: flex;
@@ -595,4 +657,28 @@ footer {
   width: 134px;
   flex-shrink: 0;
 }
+.app-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.main-condition {
+  font-weight: bold;
+  color: red;
+}
+.condition-label {
+  padding-left: 12px;
+  padding-right: 12px;
+  min-width: 90px;
+  /* font-weight: bold; */
+  width: auto;
+  background-color: lightgray;
+}
+.muted {
+  color: gray;
+}
+.font-bold {
+  font-weight: bold;
+}
 </style>
+
